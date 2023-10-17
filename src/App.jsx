@@ -8,23 +8,31 @@ import LoggedInView from './Views/LoggedInView'
 function App() {
     const loginModel = new LoginModel();
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+    const [emailInput, setEmailInput] = useState("");
+    const [passwordInput, setPasswordInput] = useState("");
 
-    const handleLogin = () => {
-        loginModel.Login("user@example.com", "Test123!")
+    function handleLogin() {
+        loginModel.Login(emailInput, passwordInput)
             .then(result => setUserIsLoggedIn(result));
+    }
+
+    function logoutCallback() {
+        loginModel.Logout().then(a => setUserIsLoggedIn(false));
     }
 
     if (userIsLoggedIn) {
         return (
-                <LoggedInView />
+            <LoggedInView OnLogoutClicked={logoutCallback} />
         );
     }
     else {
 
         return <>
+            <input type="email" placeholder="Email" value={emailInput} onChange={(arg) => setEmailInput(arg.target.value) } />
+            <input type="password" placeholder="Password" value={passwordInput} onChange={(arg) => setPasswordInput(arg.target.value)}></input>
             <button onClick={handleLogin}>Login</button>
         </>
-    } 
+    }
 }
 
 export default App

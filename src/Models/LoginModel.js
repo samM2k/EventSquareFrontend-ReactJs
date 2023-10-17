@@ -30,7 +30,7 @@ class LoginModel {
             return false;
         }
     }
-    Logout = function () {
+    Logout = async function () {
         //Logout here
         return;
     }
