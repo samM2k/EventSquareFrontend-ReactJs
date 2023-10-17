@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+/src/Views/AuthroizedView.jsx
+/src/Views/LoginView.jsx
