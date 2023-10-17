@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import LoginModel from './Models/LoginModel.js'
 import LoggedInView from './Views/LoggedInView'
 
-function App(loginModel) {
+function App() {
+    const loginModel = new LoginModel();
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
