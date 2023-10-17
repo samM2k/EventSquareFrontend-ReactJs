@@ -3,7 +3,7 @@ import reactLogo from '../assets/react.svg'
 import viteLogo from '../../public/vite.svg'
 import '../App.css'
 
-function LoggedInView(onLogoutClicked) {
+function AuthorizedView(onLogoutClicked) {
     
   return (
       <div>
@@ -23,4 +23,4 @@ function LoggedInView(onLogoutClicked) {
   );
 }
 
-export default LoggedInView;
+export default AuthorizedView;
