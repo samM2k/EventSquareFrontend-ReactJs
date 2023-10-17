@@ -5,7 +5,6 @@ class LoginModel {
 
     BearerToken = null;
     RefreshToken = null;
-    UserIsLoggedIn = false;
 
     Login = async function (email, password) {
         //Login here
@@ -25,20 +24,15 @@ class LoginModel {
         try {
             var response = await $.ajax(settings);
             console.log("Response", response);
-                //setIsLoggedIn(true);
-            this.UserIsLoggedIn = true;
+            return true;
         } catch (e) {
             console.log("Exception thrown when making login request", e);
-            if (e.status == 401) {
-            this.UserIsLoggedIn = false;
-                //setIsLoggedIn(false);
-            }
+            return false;
         }
     }
     Logout = function () {
         //Logout here
-
-        this.UserIsLoggedIn = false;
+        return;
     }
 }
 

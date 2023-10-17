@@ -30,7 +30,7 @@ function App() {
                 </div>
                 <h1>Vite + React</h1>
                 <div className="card">
-                    <button >
+                    <button onClick={()=>setCount(count+1)}>
                         count is {count}
                     </button>
                     <p>
@@ -45,9 +45,8 @@ function App() {
     else 
         return <>
             <button onClick={function() {
-                loginModel.Login("user@example.com", "Test123!").then(() => setUserIsLoggedIn(loginModel.UserIsLoggedIn))
-            }
-            }>Login</button>
+                loginModel.Login("user@example.com", "Test123!").then((result) => setUserIsLoggedIn(result))
+            }}>Login</button>
         </>
 }
 
