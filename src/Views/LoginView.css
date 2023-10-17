@@ -1,0 +1,14 @@
+.login-form {
+    display:flex;
+    flex-direction:column;
+    padding: 25px;
+    border-radius:5px;
+    background-color:#1d1d1d
+}
+
+.login-form > *{
+    margin-bottom:15px;
+}
+.login-form > *:last-child{
+    margin-bottom:initial;
+}
