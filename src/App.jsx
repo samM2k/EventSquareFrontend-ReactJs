@@ -2,10 +2,14 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import LoginModel from './Models/LoginModel.js'
+
+var model = new LoginModel();
+if (!model.UserIsLoggedIn)
+    model.Login("user@example.com", "Test123!");
 
 function App() {
-  const [count, setCount] = useState(0)
-
+    const [count, setCount] = useState(0)
   return (
     <>
       <div>
