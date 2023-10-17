@@ -1,6 +1,6 @@
 class LoginModel {
     constructor() {
-
+        console.log("Constructed login model.")
     }
 
     BearerToken = null;
@@ -25,11 +25,13 @@ class LoginModel {
         try {
             var response = await $.ajax(settings);
             console.log("Response", response);
+                //setIsLoggedIn(true);
             this.UserIsLoggedIn = true;
         } catch (e) {
             console.log("Exception thrown when making login request", e);
             if (e.status == 401) {
-                this.UserIsLoggedIn = false;
+            this.UserIsLoggedIn = false;
+                //setIsLoggedIn(false);
             }
         }
     }
