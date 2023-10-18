@@ -24,8 +24,7 @@ class ApiClient {
 
         try {
             var response = await $.ajax(settings);
-            //console.log("Response", response);
-            return new ApiResult(true, null);
+            return new ApiResult(true, response);
         } catch (e) {
             return new ApiResult(false, e.responseText);
         }
@@ -44,8 +43,7 @@ class ApiClient {
 
         try {
             var response = await $.ajax(settings);
-            //console.log("Response", response);
-            return new ApiResult(true, null);
+            return new ApiResult(true, response);
         } catch (e) {
             return new ApiResult(false, e.responseText);
         }
@@ -64,8 +62,27 @@ class ApiClient {
 
         try {
             var response = await $.ajax(settings);
-            //console.log("Response", response);
             return new ApiResult(true, null);
+        } catch (e) {
+            return new ApiResult(false, e.responseText);
+        }
+    }
+
+
+    static getEvents = async () => {
+        var settings = {
+            "url": ApiClient.domain + "/api/events",
+            "method": "GET",
+            "timeout": 0,
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true
+        };
+
+        try {
+            var response = await $.ajax(settings);
+            return new ApiResult(true, response);
         } catch (e) {
             return new ApiResult(false, e.responseText);
         }

@@ -8,7 +8,7 @@ import LoginModel from './Models/LoginModel.js'
 const loginModel = new LoginModel();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <App loginModel={loginModel} />
+  <React.StrictMode>
+    <App loginModel={loginModel} />
   </React.StrictMode>,
 )
