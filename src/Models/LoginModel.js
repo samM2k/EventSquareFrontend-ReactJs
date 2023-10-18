@@ -1,3 +1,5 @@
+import ApiClient from "./ApiClient";
+
 class LoginModel {
     constructor() {
         console.log("Constructed login model.")
@@ -8,33 +10,12 @@ class LoginModel {
 
     Login = async function (email, password) {
         //Login here
-        var settings = {
-            "url": "https://localhost:7031/api/account/login",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json",
-            },
-            "data": JSON.stringify({
-                "email": email,
-                "password": password
-            }),
-        };
-
-        try {
-            var response = await $.ajax(settings);
-            console.log("Response", response);
-            return true;
-        } catch (e) {
-            console.log("Exception thrown when making login request", e);
-            return false;
-        }
+        var result = await ApiClient.login(email, password);
+        return result;
     }
     Logout = async function () {
-        var success = false;
-        //Logout here
-        success = true;
-        return success;
+        var result = await ApiClient.logout();
+        return result;
     }
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import LoginView from './Views/LoginView'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -7,22 +7,29 @@ import Home from './Views/Home'
 import Layout from './Views/Layout'
 import LogoutView from './Views/LogoutView'
 import EventsView from './Views/EventsView'
+import ApiClient from './Models/ApiClient';
 
 function App({ loginModel }) {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-    async function handleLogin(email, password) {
-        var result = await loginModel.Login(email, password);
-        setUserIsLoggedIn(result);
+    useEffect(() => {
+        ApiClient.validateSession().then(result => {
+            setUserIsLoggedIn(result.Success)
+        });
+    }, [])
+
+    async function logoutFunction() {
+        var result = await ApiClient.logout();
+        setUserIsLoggedIn(!result.Success);
         return result;
     }
 
-    async function logoutCallbackAsync() {
-        var response = await loginModel.Logout()
-        setUserIsLoggedIn(!response);
-        return response;
-    }
 
+    async function loginFunction(email, password) {
+        var result = await ApiClient.login(email, password);
+        setUserIsLoggedIn(result.Success);
+        return result;
+    }
 
 
     return (
@@ -30,8 +37,8 @@ function App({ loginModel }) {
             <Routes>
                 <Route path="/" element={<Layout Authorized={userIsLoggedIn} />}>
                     <Route index element={< Home IsAuthorized={userIsLoggedIn} />} />
-                    <Route path="login" element={<LoginView OnLogin={handleLogin} />} />
-                    <Route path="logout" element={<LogoutView LogoutFunction={logoutCallbackAsync} />} />
+                    <Route path="login" element={<LoginView LoginFunction={loginFunction} Authenticated={userIsLoggedIn} />} />
+                    <Route path="logout" element={<LogoutView LogoutFunction={logoutFunction} />} />
                     <Route path="events" element={<EventsView IsAuthorized={userIsLoggedIn} />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Route>

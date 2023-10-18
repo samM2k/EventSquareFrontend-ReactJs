@@ -1,30 +1,32 @@
 import { useState } from 'react';
 import './LoginView.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import ApiClient from '../Models/ApiClient';
 
-function LoginView({ OnLogin }) {
+function LoginView({ Authenticated, LoginFunction }) {
     const navigate = useNavigate();
 
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [validationErrorMessage, setValidationErrorMessage] = useState("");
-    var showValidationError = (error)=>{
+    var showValidationError = (error) => {
         setValidationErrorMessage(error)
         setTimeout(() => { setValidationErrorMessage("") }, 2000);
     }
-    const handleLogin = async() => {
-        var response = await OnLogin(emailInput, passwordInput)
-            response ? navigate("/") : showValidationError("An error occurred during login.");
-    }
-
-    return (
-        <div className="login-form">
-            <input id="email-input" type="email" placeholder="Email" value={emailInput} onChange={(arg) => setEmailInput(arg.target.value)} />
-            <input id="password-input" type="password" placeholder="Password" value={passwordInput} onChange={(arg) => setPasswordInput(arg.target.value)}></input>
-            <button onClick={handleLogin}>Login</button>
-            <span className="validation-error">{validationErrorMessage}</span>
-        </div>
-    );
+    if (!Authenticated)
+        return (
+            <div className="login-form">
+                <input id="email-input" type="email" placeholder="Email" value={emailInput} onChange={(arg) => setEmailInput(arg.target.value)} />
+                <input id="password-input" type="password" placeholder="Password" value={passwordInput} onChange={(arg) => setPasswordInput(arg.target.value)}></input>
+                <button onClick={() => LoginFunction(emailInput, passwordInput).then(result => {
+                    result.Success ? navigate("/") : showValidationError(result.Body)
+                }
+                )}>Login</button>
+                <span className="validation-error">{validationErrorMessage}</span>
+            </div>
+        );
+    else
+        return <Navigate to="/" />;
 }
 
 export default LoginView;
