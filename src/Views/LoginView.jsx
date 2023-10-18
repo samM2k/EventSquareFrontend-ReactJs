@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import './LoginView.css';
+import { useNavigate } from 'react-router-dom';
+
 function LoginView({ OnLogin }) {
+    const navigate = useNavigate();
+
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const handleLogin = () => {
-        OnLogin(emailInput, passwordInput);
-        
+        OnLogin(emailInput, passwordInput).then(a => a ? navigate("/") : null);
     }
 
     return (

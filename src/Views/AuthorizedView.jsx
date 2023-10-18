@@ -3,7 +3,7 @@ import reactLogo from '../assets/react.svg'
 import viteLogo from '../../public/vite.svg'
 import '../App.css'
 
-function AuthorizedView({ onLogoutClicked }) {
+function AuthorizedView() {
     
   return (
       <div>
@@ -17,7 +17,6 @@ function AuthorizedView({ onLogoutClicked }) {
           </div>
           <h1>Vite + React</h1>
 
-          <button onClick={onLogoutClicked}>Logout</button>
 
       </div>
   );

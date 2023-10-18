@@ -12,9 +12,10 @@ import Layout from './Views/Layout'
 function App({ loginModel }) {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-    function handleLogin(email, password) {
-        loginModel.Login(email, password)
-            .then(result => setUserIsLoggedIn(result));
+    async function handleLogin(email, password) {
+        var result = await loginModel.Login(email, password);
+        setUserIsLoggedIn(result);
+        return result;
     }
 
     function logoutCallback() {

@@ -1,13 +1,20 @@
 import React from 'react';
+import AuthorizedView from './AuthorizedView';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function Home({ IsAuthorized }) {
+    const navigate = useNavigate();
+
     if (!IsAuthorized) {
-        window.location.href = "/login";
+        return (
+            <Navigate to="/login" />
+        );
+    } else {
+        return (
+            <AuthorizedView />
+        );
     }
 
-    return (
-    <p>Homepage</p>
-  );
 }
 
 export default Home;

@@ -1,23 +1,16 @@
 import { Outlet, Link } from "react-router-dom";
-
+import NavBar from './NavBar.jsx'
 function Layout({ Authorized, OnLogout }) {
     return (
         <>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/blogs">Blogs</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact">Contact</Link>
-                    </li>
-                    {Authorized ? <button onClick={OnLogout}>Logout</button> : <p>loggedOut</p>}
-                </ul>
-            </nav>
+            <NavBar>
 
+                <Link to="/">Home</Link>
+                <Link to="/blogs">Blogs</Link>
+                <Link to="/contact">Contact</Link>
+
+                {Authorized ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>}
+            </NavBar>
             <Outlet />
         </>
     )
