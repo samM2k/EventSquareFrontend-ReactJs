@@ -1,16 +1,29 @@
 import { Outlet, Link } from "react-router-dom";
 import NavBar from './NavBar.jsx'
 import './Layout.css';
-function Layout({ Authorized, OnLogout }) {
+import NavBarItem from "../Models/NavBarItem.js";
+
+function Layout({ Authorized }) {
+    var navbarItems = [
+        new NavBarItem("Home", "/"),
+        new NavBarItem("Blogs", "/blogs"),
+        new NavBarItem("Contact", "/contact"),
+    ];
+
+    if (Authorized) {
+        navbarItems.push(new NavBarItem("Logout", "/logout"));
+    }
+
     return (
         <>
             <NavBar>
-                <Link to="/">Home</Link>
-                <Link to="/blogs">Blogs</Link>
-                <Link to="/contact">Contact</Link>
-
-                {Authorized ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>}
-            </NavBar>
+                {
+                    navbarItems.map(item =>
+                        <Link key={item.Label} className="nav-link" to={item.Href}>{item.Label}</Link>
+                            
+                    )
+                }
+               </NavBar>
             <div className="layout-main">
                 <Outlet />
             </div>

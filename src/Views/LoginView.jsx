@@ -12,8 +12,9 @@ function LoginView({ OnLogin }) {
         setValidationErrorMessage(error)
         setTimeout(() => { setValidationErrorMessage("") }, 2000);
     }
-    const handleLogin = () => {
-        OnLogin(emailInput, passwordInput).then(a => a ? navigate("/") : showValidationError("An error occurred during login."));
+    const handleLogin = async() => {
+        var response = await OnLogin(emailInput, passwordInput)
+            response ? navigate("/") : showValidationError("An error occurred during login.");
     }
 
     return (

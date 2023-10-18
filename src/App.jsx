@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageNotFound from './Views/PageNotFound'
 import Home from './Views/Home'
 import Layout from './Views/Layout'
+import LogoutView from './Views/LogoutView'
 
 function App({ loginModel }) {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -18,8 +19,10 @@ function App({ loginModel }) {
         return result;
     }
 
-    function logoutCallback() {
-        loginModel.Logout().then(a => setUserIsLoggedIn(false));
+    async function logoutCallbackAsync() {
+        var response = await loginModel.Logout()
+        setUserIsLoggedIn(!response);
+        return response;
     }
 
 
@@ -27,9 +30,10 @@ function App({ loginModel }) {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout Authorized={userIsLoggedIn} OnLogout={logoutCallback} />}>
+                <Route path="/" element={<Layout Authorized={userIsLoggedIn} />}>
                     <Route index element={< Home IsAuthorized={userIsLoggedIn} />} />
-                    <Route path="login" element={<LoginView OnLogin={ handleLogin } />} />
+                    <Route path="login" element={<LoginView OnLogin={handleLogin} />} />
+                    <Route path="logout" element={<LogoutView LogoutFunction={logoutCallbackAsync} />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Route>
             </Routes>

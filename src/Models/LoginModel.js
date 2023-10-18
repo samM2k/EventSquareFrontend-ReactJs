@@ -31,8 +31,10 @@ class LoginModel {
         }
     }
     Logout = async function () {
+        var success = false;
         //Logout here
-        return;
+        success = true;
+        return success;
     }
 }
 
