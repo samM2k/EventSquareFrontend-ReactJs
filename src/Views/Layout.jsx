@@ -10,7 +10,12 @@ function Layout({ Authorized }) {
     ];
 
     if (Authorized) {
-        navbarItems.push(new NavBarItem("Logout", "/logout"));
+        navbarItems.push(new NavBarItem("Logout", "/logout"))
+    } else {
+        navbarItems = navbarItems.concat([
+            new NavBarItem("Login", "/login"),
+            new NavBarItem("Signup", "/signup"),
+        ]);
     }
 
     return (

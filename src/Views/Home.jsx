@@ -5,6 +5,8 @@ import viteLogo from '../../public/vite.svg'
 function Home({ IsAuthorized }) {
     if (!IsAuthorized) {
         return (
+            // show a nice landing page here instead of redirect to login.
+            // user can use login button in navbar
             <Navigate to="/login" />
         );
     } else {
