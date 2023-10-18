@@ -7,8 +7,13 @@ function LoginView({ OnLogin }) {
 
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
+    const [validationErrorMessage, setValidationErrorMessage] = useState("");
+    var showValidationError = (error)=>{
+        setValidationErrorMessage(error)
+        setTimeout(() => { setValidationErrorMessage("") }, 2000);
+    }
     const handleLogin = () => {
-        OnLogin(emailInput, passwordInput).then(a => a ? navigate("/") : null);
+        OnLogin(emailInput, passwordInput).then(a => a ? navigate("/") : showValidationError("An error occurred during login."));
     }
 
     return (
@@ -16,6 +21,7 @@ function LoginView({ OnLogin }) {
             <input type="email" placeholder="Email" value={emailInput} onChange={(arg) => setEmailInput(arg.target.value)} />
             <input type="password" placeholder="Password" value={passwordInput} onChange={(arg) => setPasswordInput(arg.target.value)}></input>
             <button onClick={handleLogin}>Login</button>
+            <span className="validation-error">{validationErrorMessage}</span>
         </div>
     );
 }
