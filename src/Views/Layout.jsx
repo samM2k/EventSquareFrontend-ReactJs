@@ -6,8 +6,7 @@ import NavBarItem from "../Models/NavBarItem.js";
 function Layout({ Authorized }) {
     var navbarItems = [
         new NavBarItem("Home", "/"),
-        new NavBarItem("Blogs", "/blogs"),
-        new NavBarItem("Contact", "/contact"),
+        new NavBarItem("Events", "/events"),
     ];
 
     if (Authorized) {

@@ -9,6 +9,7 @@ import PageNotFound from './Views/PageNotFound'
 import Home from './Views/Home'
 import Layout from './Views/Layout'
 import LogoutView from './Views/LogoutView'
+import EventsView from './Views/EventsView'
 
 function App({ loginModel }) {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -34,24 +35,12 @@ function App({ loginModel }) {
                     <Route index element={< Home IsAuthorized={userIsLoggedIn} />} />
                     <Route path="login" element={<LoginView OnLogin={handleLogin} />} />
                     <Route path="logout" element={<LogoutView LogoutFunction={logoutCallbackAsync} />} />
+                    <Route path="events" element={<EventsView IsAuthorized={userIsLoggedIn} />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>
     );
-
-
-    //if (userIsLoggedIn) {
-    //    return (
-    //        <AuthorizedView OnLogoutClicked={logoutCallback} />
-    //    );
-    //}
-    //else {
-
-    //    return <>
-    //        <LoginView OnLogin={handleLogin} />
-    //    </>
-    //}
 }
 
 export default App
