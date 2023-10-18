@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react'
 import './App.css'
-import AuthorizedView from './Views/AuthorizedView'
 import LoginView from './Views/LoginView'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageNotFound from './Views/PageNotFound'
