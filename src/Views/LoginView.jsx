@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './LoginView.css';
 import { Navigate, useNavigate } from 'react-router-dom';
-import ApiClient from '../Models/ApiClient';
 
 function LoginView({ Authenticated, LoginFunction }) {
     const navigate = useNavigate();
