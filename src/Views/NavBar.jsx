@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function NavBar({ children }) {
+function NavBar({ items }) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">Navbar</a>
@@ -10,9 +11,9 @@ function NavBar({ children }) {
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                    {children.map(child => {
-                        return <div key={children.indexOf(child)} className="navbar-item">
-                            {child}
+                    {items.map(item => {
+                        return <div key={items.indexOf(item)} className="navbar-item">
+                            <Link key={item.Label} className="nav-link" to={item.Href}>{item.Label}</Link>
                         </div>
                     })}
                 </ul>

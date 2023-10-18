@@ -16,14 +16,7 @@ function Layout({ Authorized }) {
 
     return (
         <>
-            <NavBar>
-                {
-                    navbarItems.map(item =>
-                        <Link key={item.Label} className="nav-link" to={item.Href}>{item.Label}</Link>
-                            
-                    )
-                }
-               </NavBar>
+            <NavBar items={navbarItems} />
             <div className="layout-main">
                 <Outlet />
             </div>
