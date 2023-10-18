@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ApiClient from '../Models/ApiClient';
+import EventsListView from './EventsListView';
+import EventsMapView from './EventsMapView';
 
 function EventsView({ IsAuthorized }) {
   const viewTypes = ["list", "map"];
   const [viewType, setViewType] = useState(viewTypes[0]);
 
   const [events, setEvents] = useState(null);
-
-  function getVisibilityString(int) {
-    switch (int) {
-      case 0:
-        return "Hidden";
-      case 1:
-        return "InviteOnly";
-      case 2:
-        return "Public";
-    }
-  }
 
   function toggleViewType() {
     var currentViewType = viewTypes.indexOf(viewType);
@@ -54,25 +45,11 @@ function EventsView({ IsAuthorized }) {
       {
         //List view
         (viewType) == viewTypes[0] ?
-          <div className='events-list-view'>
-            <h3>Events</h3>
-            {
-              events.map(calendarEvent => {
-                // { "id":"0cd8a266-506c-461a-b2fd-88096cfd2615","owner":"string","visibility":2,"startDateTime":"2023-10-16T03:55:32.519+00:00","endDateTime":"2023-10-16T03:55:32.519+00:00","name":"string","description":"string","isVirtual":true,"isPhysical":true,"location":{"flatNumber":0,"streetNumber":0,"streetName":"string","locality":"string","stateRegion":"string","country":"string"},"rsvps":null}
-                return (
-                  <div key={calendarEvent.id} className='event-card'>
-                    <div className=''>{calendarEvent.name}</div>
-                    <div className=''>{getVisibilityString(calendarEvent.visibility)}</div>
-                    {calendarEvent.name}
-                  </div>
-                );
-              })
-            }
-          </div>
+          <EventsListView Events={events} />
           :
           //Map view
           viewType == viewTypes[1] ?
-            <div>Map View</div>
+            <EventsMapView Events={events}/>
             : null
 
       }
