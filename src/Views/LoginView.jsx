@@ -19,8 +19,8 @@ function LoginView({ OnLogin }) {
 
     return (
         <div className="login-form">
-            <input type="email" placeholder="Email" value={emailInput} onChange={(arg) => setEmailInput(arg.target.value)} />
-            <input type="password" placeholder="Password" value={passwordInput} onChange={(arg) => setPasswordInput(arg.target.value)}></input>
+            <input id="email-input" type="email" placeholder="Email" value={emailInput} onChange={(arg) => setEmailInput(arg.target.value)} />
+            <input id="password-input" type="password" placeholder="Password" value={passwordInput} onChange={(arg) => setPasswordInput(arg.target.value)}></input>
             <button onClick={handleLogin}>Login</button>
             <span className="validation-error">{validationErrorMessage}</span>
         </div>
