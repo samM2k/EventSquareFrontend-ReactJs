@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './MapView.css';
 
-function MapView() {
+function MapView({ Markers, Zoom }) {
     // const [map, setMap] = useState(null);
     let map;
+    Markers ??= [
+        {
+            position: { lat: 50, lng: 10 },
+            popupContent: "Test marker"
+        }
+    ]
+
+    Zoom ??= 4
+
 
     async function initMap() {
         const { Map, InfoWindow } = await google.maps.importLibrary("maps");
@@ -13,29 +22,26 @@ function MapView() {
 
         const infoWindow = new InfoWindow();
 
-
-        var position = { lat: -25.344, lng: 131.031 };
-
-
         map = new Map(document.getElementById("map"), {
-            center: position,
-            zoom: 12,
+            center: Markers[0].position,
+            zoom: Zoom,
             mapId: "DEMO_MAP_ID",
         });
 
-        var marker = new AdvancedMarkerElement({
-            map,
-            position: position,
-            title: "Uluru national park- some extra text string",
-        });
+        Markers.forEach(m => {
+            var marker = new AdvancedMarkerElement({
+                map,
+                position: m.position,
+                title: "Uluru national park- some extra text string",
+            });
 
-        marker.addListener("click", ({ domEvent, latLng }) => {
-            const { target } = domEvent;
+            marker.addListener("click", ({ domEvent, latLng }) => {
+                infoWindow.close();
+                infoWindow.setContent(m.popupContent);
+                infoWindow.open(marker.map, marker);
+            });
+        })
 
-            infoWindow.close();
-            infoWindow.setContent(marker.title);
-            infoWindow.open(marker.map, marker);
-        });
     }
 
     useEffect(() => {
