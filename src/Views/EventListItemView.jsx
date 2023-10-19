@@ -16,7 +16,11 @@ function EventListItemView({ CalendarEvent }) {
         var date = new Date(Date.parse(dt))
         var returnString = "";
         returnString += date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
-        returnString += " " + date.getHours() + ":" + date.getMinutes();
+        var minutes = date.getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        returnString += " " + date.getHours() + ":" + minutes;
         return returnString;
     }
 

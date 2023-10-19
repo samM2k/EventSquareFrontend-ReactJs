@@ -4,7 +4,7 @@
     background-color: rgb(236, 236, 236);
     margin: 5px;
     text-align: left;
-
+    justify-content: space-between;
     display: flex;
     flex-direction: row;
 }
@@ -12,6 +12,7 @@
 .event-details {
     flex-grow: 1;
     padding: 1%;
+    max-width: 60%;
 }
 
 .card-action {

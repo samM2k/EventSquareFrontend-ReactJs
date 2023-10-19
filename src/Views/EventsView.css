@@ -16,6 +16,7 @@
 
 .events-view-header-row button {
     margin: auto 15px;
+    padding: auto;
     display: flex;
 }
 
