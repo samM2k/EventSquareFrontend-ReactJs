@@ -16,4 +16,9 @@
 
 .events-view-header-row button {
     margin: auto 15px;
+    display: flex;
+}
+
+.events-view-header-row button ion-icon {
+    font-size: x-large;
 }

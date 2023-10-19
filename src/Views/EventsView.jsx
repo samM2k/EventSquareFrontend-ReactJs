@@ -48,7 +48,9 @@ function EventsView({ IsAuthorized }) {
       <div className='events-view-header-row'>
         <h3>Events</h3>
 
-        <button onClick={toggleViewType}>{formatViewType(viewType)}</button>
+        <button onClick={toggleViewType}>{viewType == viewTypes[0] ? <ion-icon name="list-outline" />
+          : viewType == viewTypes[1] ? <ion-icon name="map-outline" />
+            : null}</button>
       </div>
       {
         //List view
