@@ -7,7 +7,9 @@ function Home({ IsAuthorized }) {
         return (
             // show a nice landing page here instead of redirect to login.
             // user can use login button in navbar
-            <Navigate to="/login" />
+            <div>
+                This is a nice landing page!
+            </div>
         );
     } else {
         return (

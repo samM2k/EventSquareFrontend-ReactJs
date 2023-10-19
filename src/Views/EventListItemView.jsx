@@ -1,3 +1,5 @@
+import './EventListItemView.css';
+
 function EventListItemView({ CalendarEvent }) {
     function getVisibilityString(int) {
         switch (int) {
@@ -10,11 +12,19 @@ function EventListItemView({ CalendarEvent }) {
         }
     }
 
+    function parseDateTime(dt) {
+        var date = new Date(Date.parse(dt))
+        var returnString = "";
+        returnString += date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+        returnString += " " + date.getHours() + ":" + date.getMinutes();
+        return returnString;
+    }
+
     return (
         <div key={CalendarEvent.id} className='event-card'>
             <div className=''>{CalendarEvent.name}</div>
             <div className=''>{getVisibilityString(CalendarEvent.visibility)}</div>
-            {CalendarEvent.name}
+            <div className=''>{parseDateTime(CalendarEvent.startDateTime)}</div>
         </div>
     );
 }

@@ -1,0 +1,13 @@
+.event-card {}
+
+.event-card>* {
+    display: inline-block;
+    /* width: fit-content; */
+    /* margin: 0 auto; */
+    width: 33%;
+    text-align: left;
+}
+
+.header-card {
+    font-weight: 600;
+}
