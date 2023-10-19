@@ -10,6 +10,15 @@ function EventsView({ IsAuthorized }) {
 
   const [events, setEvents] = useState(null);
 
+  function getEventsView() {
+    switch (viewTypes.indexOf(viewType)) {
+      case 0:
+        return <EventsListView Events={events} />
+      case 1:
+        return <EventsMapView Events={events} />
+    }
+  }
+
   function toggleViewType() {
     var currentViewType = viewTypes.indexOf(viewType);
     switch (currentViewType) {
@@ -21,6 +30,16 @@ function EventsView({ IsAuthorized }) {
         break;
       default:
         return;
+    }
+  }
+
+
+  function getToggleViewIcon() {
+    switch (viewTypes.indexOf(viewType)) {
+      case 0:
+        return <ion-icon name="map-outline" />;
+      case 1:
+        return <ion-icon name="list-outline" />;
     }
   }
 
@@ -48,19 +67,11 @@ function EventsView({ IsAuthorized }) {
       <div className='events-view-header-row'>
         <h3>Events</h3>
 
-        <button onClick={toggleViewType}>{viewType == viewTypes[0] ? <ion-icon name="list-outline" />
-          : viewType == viewTypes[1] ? <ion-icon name="map-outline" />
-            : null}</button>
+        <button onClick={toggleViewType}>{getToggleViewIcon()}</button>
       </div>
       {
         //List view
-        (viewType) == viewTypes[0] ?
-          <EventsListView Events={events} />
-          :
-          //Map view
-          viewType == viewTypes[1] ?
-            <EventsMapView Events={events} />
-            : null
+        getEventsView()
 
       }
 

@@ -1,6 +1,8 @@
+import MapView from "./MapView";
+
 function EventsMapView({ Events }) {
     return (
-        <div>Map View</div>
+        <div><MapView lat={-19} long={121.8} /></div>
     );
 }
 

@@ -1,17 +1,6 @@
 import './EventListItemView.css';
 
 function EventListItemView({ CalendarEvent }) {
-    function getVisibilityString(int) {
-        switch (int) {
-            case 0:
-                return "Hidden";
-            case 1:
-                return "InviteOnly";
-            case 2:
-                return "Public";
-        }
-    }
-
     function parseDateTime(dt) {
         var date = new Date(Date.parse(dt))
         var returnString = "";
