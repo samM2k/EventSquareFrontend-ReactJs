@@ -24,6 +24,11 @@ function EventsView({ IsAuthorized }) {
     }
   }
 
+  function formatViewType(viewTypeString) {
+    var result = viewTypeString.charAt(0).toUpperCase() + viewTypeString.slice(1);
+    return result;
+  }
+
   useEffect(() => {
     if (events == null) {
       ApiClient.getEvents().then(result => {
@@ -43,8 +48,7 @@ function EventsView({ IsAuthorized }) {
       <div className='events-view-header-row'>
         <h3>Events</h3>
 
-        <p>Current view: {viewType}</p>
-        <button onClick={toggleViewType}>Toggle view</button>
+        <button onClick={toggleViewType}>{formatViewType(viewType)}</button>
       </div>
       {
         //List view

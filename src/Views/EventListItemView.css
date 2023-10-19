@@ -1,13 +1,35 @@
-.event-card {}
-
-.event-card>* {
-    display: inline-block;
-    /* width: fit-content; */
-    /* margin: 0 auto; */
-    width: 33%;
+.event-card {
+    width: 100%;
     text-align: left;
+    background-color: rgb(236, 236, 236);
+    margin: 5px;
+    text-align: left;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.event-details {
+    flex-grow: 1;
+    padding: 1%;
+}
+
+.card-action {
+    margin: auto 15px;
 }
 
 .header-card {
     font-weight: 600;
+}
+
+.event-name {
+    font-size: large;
+}
+
+.event-date {
+    font-size: medium;
+}
+
+.event-location {
+    font-size: small;
 }

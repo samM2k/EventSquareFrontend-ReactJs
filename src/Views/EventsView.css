@@ -13,3 +13,7 @@
     flex-grow: 1;
     text-align: left;
 }
+
+.events-view-header-row button {
+    margin: auto 15px;
+}
