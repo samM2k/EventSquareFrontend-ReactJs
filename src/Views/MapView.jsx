@@ -2,36 +2,46 @@ import React, { useEffect, useState } from 'react';
 import './MapView.css';
 
 function MapView() {
-    const [map, setMap] = useState(null);
+    // const [map, setMap] = useState(null);
+    let map;
 
     async function initMap() {
-        const { Map } = await google.maps.importLibrary("maps");
-        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+        const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+            "marker",
+        );
+
+        const infoWindow = new InfoWindow();
+
 
         var position = { lat: -25.344, lng: 131.031 };
-        var tempMap = new Map(document.getElementById("map"), {
+
+
+        map = new Map(document.getElementById("map"), {
             center: position,
             zoom: 12,
+            mapId: "DEMO_MAP_ID",
         });
 
-
-        // The marker, positioned at Uluru
-        const marker = new AdvancedMarkerElement({
-            map: map,
+        var marker = new AdvancedMarkerElement({
+            map,
             position: position,
-            title: 'Uluru'
+            title: "Uluru national park- some extra text string",
         });
 
-        setMap(tempMap);
+        marker.addListener("click", ({ domEvent, latLng }) => {
+            const { target } = domEvent;
+
+            infoWindow.close();
+            infoWindow.setContent(marker.title);
+            infoWindow.open(marker.map, marker);
+        });
     }
 
     useEffect(() => {
         if (!map)
             initMap();
     }, [])
-
-
-    // useEffect(() => initMap(), []);
 
 
     return (
