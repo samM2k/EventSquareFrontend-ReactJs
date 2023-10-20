@@ -4,7 +4,7 @@ function OverlayButton({ onClick }) {
 
     return (
         <Overlay position="bottom-right">
-            <button onClick={onClick} className="overlay-btn"><ion-icon name="add" size="large"></ion-icon></button>
+            <button onClick={onClick} className="overlay-btn btn-dark"><ion-icon name="add" size="large"></ion-icon></button>
         </Overlay>
     );
 }

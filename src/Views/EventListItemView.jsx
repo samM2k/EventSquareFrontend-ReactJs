@@ -40,7 +40,7 @@ function EventListItemView({ CalendarEvent }) {
                 <div className='event-date'>{parseDateTime(CalendarEvent.startDateTime)} - {parseDateTime(CalendarEvent.endDateTime)}</div>
                 <div className='event-location'>{formatLocation(CalendarEvent.location)}</div>
             </div>
-            <div className='card-action'><button>View details</button></div>
+            <div className='card-action'><button className='btn btn-dark'>View details</button></div>
         </div>
     );
 }

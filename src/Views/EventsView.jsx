@@ -67,7 +67,7 @@ function EventsView({ IsAuthorized }) {
       <div className='events-view-header-row'>
         <h3>Events</h3>
 
-        <button onClick={toggleViewType}>{getToggleViewIcon()}</button>
+        <button className='btn btn-dark' onClick={toggleViewType}>{getToggleViewIcon()}</button>
       </div>
       {
         //List view

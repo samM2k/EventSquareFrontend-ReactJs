@@ -1,5 +1,5 @@
 .overlay-btn {
-    background-color: aqua;
+    /* background-color: rgb(49, 49, 49); */
     width: 60px;
     height: 60px;
     border-radius: 100%;
@@ -7,4 +7,15 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    /* OffsetX | OffsetY | Radial Blur | Radius  */
+    box-shadow: 2px 2px 4px 2px black;
 }
+
+/* 
+.overlay-btn:hover {
+    border: none;
+}
+
+.overlay-btn:focus-visible {
+    border: none;
+} */
