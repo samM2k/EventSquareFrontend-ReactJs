@@ -36,10 +36,10 @@ function EventsMapView({ Events }) {
 
     if (!requestComplete)
         return (
-            <p>Fetching locatin...</p>)
+            <p>Fetching location...</p>)
     else
         return (
-            <div><MapView Zoom={userLocation ? 12 : 3} Center={userLocation} Markers={markers} /></div>
+            <div><MapView Zoom={userLocation ? 10 : 3} Center={userLocation} Markers={markers} /></div>
         );
 }
 
