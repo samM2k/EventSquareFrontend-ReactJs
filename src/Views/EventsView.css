@@ -1,12 +1,13 @@
 .events-view-container {
     flex-grow: 1;
     width: 100vw;
-    padding: 5%;
+    padding: 2% 5%;
 }
 
 .events-view-header-row {
     display: flex;
     flex-direction: row;
+    margin-bottom: 2%;
 }
 
 .events-view-header-row h3 {
