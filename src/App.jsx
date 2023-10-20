@@ -8,6 +8,7 @@ import Layout from './Views/Layout'
 import LogoutView from './Views/LogoutView'
 import EventsView from './Views/EventsView'
 import ApiClient from './Models/ApiClient';
+import NewEventView from './Views/NewEventView';
 
 function App({ loginModel }) {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -40,6 +41,7 @@ function App({ loginModel }) {
                     <Route path="login" element={<LoginView LoginFunction={loginFunction} Authenticated={userIsLoggedIn} />} />
                     <Route path="logout" element={<LogoutView LogoutFunction={logoutFunction} />} />
                     <Route path="events" element={<EventsView IsAuthorized={userIsLoggedIn} />} />
+                    <Route path="events/new" element={<NewEventView IsAuthorized={userIsLoggedIn} />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Route>
             </Routes>

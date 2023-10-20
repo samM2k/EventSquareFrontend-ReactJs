@@ -1,0 +1,35 @@
+.new-event-container {}
+
+.centered-vertically {
+    justify-content: space-evenly;
+}
+
+.form-column {
+    padding: 10px;
+}
+
+.new-event-container form>div {
+    text-align: left;
+}
+
+.new-event-container form * {
+    width: 100%;
+}
+
+.display-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.display-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field:last-child {
+    margin-bottom: 0px;
+}
