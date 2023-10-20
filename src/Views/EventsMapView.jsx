@@ -8,7 +8,7 @@ function EventsMapView({ Events }) {
     }, [])
 
     async function init() {
-        const { Geocoder, GeocoderRequest } = await google.maps.importLibrary("geocoding")
+        const { Geocoder } = await google.maps.importLibrary("geocoding")
         var gc = new Geocoder();
         var request = {
             address: formatLocation(Events[3].location)
