@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import './MapView.css';
 
-function MapView({ Markers, Zoom }) {
+function MapView({ Markers, Zoom, Center }) {
     // const [map, setMap] = useState(null);
-    let map;
+    let map = null;
+    Center ??= { lat: 50, lng: 10 };
     Markers ??= [
         {
             position: { lat: 50, lng: 10 },
             popupContent: "Test marker"
         }
-    ]
+    ];
 
-    Zoom ??= 4
+    Zoom ??= 4;
 
 
     async function initMap() {
         const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-        const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+        const { AdvancedMarkerElement } = await google.maps.importLibrary(
             "marker",
         );
 
         const infoWindow = new InfoWindow();
 
         map = new Map(document.getElementById("map"), {
-            center: Markers[0].position,
+            center: Center,
             zoom: Zoom,
             mapId: "DEMO_MAP_ID",
         });

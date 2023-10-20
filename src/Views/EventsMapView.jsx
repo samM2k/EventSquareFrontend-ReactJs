@@ -2,42 +2,47 @@ import { useEffect, useState } from "react";
 import MapView from "./MapView";
 
 function EventsMapView({ Events }) {
+    const [userLocation, setUserLocation] = useState(null);
+    const [requestComplete, setRequestComplete] = useState(false)
 
-    useEffect(() => {
-        init()
-    }, [])
-
-    async function init() {
-        const { Geocoder } = await google.maps.importLibrary("geocoding")
-        var gc = new Geocoder();
-        var request = {
-            address: formatLocation(Events[3].location)
-        };
-        var result = await gc.geocode(request);
-        console.log(result);
+    function positionReturnedCallback(position) {
+        setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+        setRequestComplete(true);
     }
 
-    var markers = [];
+    function positionFailedCallback(e) {
+        console.log(e)
+        setRequestComplete(true);
+    }
 
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(positionReturnedCallback, positionFailedCallback);
+    }, [])
 
-
-    var l = 10;
-    var markersTemp = Events.map(e => {
-        l += 10;
+    var markers = Events.filter(e => {
+        let lat = e.location?.latitude;
+        let long = e.location?.longitude;
+        if (lat && long)
+            return true;
+    }).map(e => {
         return {
             position: {
-                lat: l,
-                lng: l
+                lat: e.location.latitude,
+                lng: e.location.longitude
             },
             popupContent: getMarkupFromEvent(e)
         }
     });
-    markers = markersTemp;
 
-    return (
-        <div><MapView Markers={markers} /></div>
-    );
+    if (!requestComplete)
+        return (
+            <p>Fetching locatin...</p>)
+    else
+        return (
+            <div><MapView Zoom={userLocation ? 12 : 3} Center={userLocation} Markers={markers} /></div>
+        );
 }
+
 
 function getMarkupFromEvent(e) {
     var result = `
