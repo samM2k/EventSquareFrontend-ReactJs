@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import NavBar from './NavBar.jsx'
+import NavBar from '../Components/NavBar.jsx'
 import './Layout.css';
 import NavBarItem from "../Models/NavBarItem.js";
 

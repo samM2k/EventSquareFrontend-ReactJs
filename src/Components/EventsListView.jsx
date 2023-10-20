@@ -1,5 +1,5 @@
 import EventListItemView from "./EventListItemView";
-import OverlayButton from "../Components/OverlayButton.jsx"
+import OverlayButton from "./OverlayButton.jsx"
 import { useNavigate } from "react-router-dom";
 
 function EventsListView({ Events }) {

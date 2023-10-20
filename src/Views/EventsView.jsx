@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ApiClient from '../Models/ApiClient';
-import EventsListView from './EventsListView';
-import EventsMapView from './EventsMapView';
+import EventsListView from '../Components/EventsListView';
+import EventsMapView from '../Components/EventsMapView';
 import './EventsView.css';
 
 function EventsView({ IsAuthorized }) {
