@@ -1,18 +1,31 @@
-.new-event-container {}
+.new-event-container {
+    padding: 1%;
+}
+
+@media only screen and (max-width: 800px) {
+    .new-event-container {
+        padding: 3%;
+    }
+
+    .field {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
 
 .centered-vertically {
     justify-content: space-evenly;
 }
 
 .form-column {
-    padding: 10px;
+    padding: 2%;
 }
 
 .new-event-container form>div {
     text-align: left;
 }
 
-.new-event-container form * {
+.new-event-container form>* {
     width: 100%;
 }
 
@@ -32,4 +45,14 @@
 
 .field:last-child {
     margin-bottom: 0px;
+}
+
+.field>label,
+.field>input,
+.field>textarea {
+    width: -webkit-fill-available;
+}
+
+.form-column>.field * {
+    max-width: 325px;
 }

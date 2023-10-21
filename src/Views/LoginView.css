@@ -7,13 +7,18 @@
     width: min-content;
 }
 
-.login-form > *{
-    margin-bottom:15px;
-}
-.login-form > *:last-child{
-    margin-bottom:initial;
+.login-view-container {
+    margin: 0 auto;
 }
 
-.validation-error{
-    color:red;
+.login-form>* {
+    margin-bottom: 15px;
+}
+
+.login-form>*:last-child {
+    margin-bottom: initial;
+}
+
+.validation-error {
+    color: red;
 }

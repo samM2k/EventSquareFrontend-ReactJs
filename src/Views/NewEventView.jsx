@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './NewEventView.css';
+import LocationPicker from '../Components/LocationPicker';
 
 function NewEventView({ isAuthorized }) {
     const [viewportWidth, setViewportWidth] = useState(window.visualViewport.width);
@@ -24,7 +25,7 @@ function NewEventView({ isAuthorized }) {
 
                     <div className='field'>
                         <label>Location</label>
-                        <input type="text" placeholder="address" />
+                        <LocationPicker />
                     </div>
                 </div>
                 <div className='display-flex-column form-column'>
@@ -107,7 +108,7 @@ function NewEventView({ isAuthorized }) {
                 </div>
                 <div className='field'>
                     <label>Location</label>
-                    <input type="text" placeholder="address" />
+                    <LocationPicker />
                 </div>
 
                 <div className='display-flex-row field'>
