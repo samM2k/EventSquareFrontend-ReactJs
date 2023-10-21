@@ -3,6 +3,9 @@ import './NewEventView.css';
 import LocationPicker from '../Components/LocationPicker';
 
 function NewEventView({ isAuthorized }) {
+    const [locationInput, setLocationInput] = useState(null);
+
+
     return (<div className="new-event-container">
         <form className='display-flex-responsive'>
             <div className='display-flex-column form-column'>
@@ -18,8 +21,9 @@ function NewEventView({ isAuthorized }) {
 
                 <div className='field'>
                     <label>Location</label>
-                    <LocationPicker LocationChangedCallback={(loc) => {
+                    <LocationPicker InitialValue={locationInput} LocationChangedCallback={(loc) => {
                         console.log(loc);
+                        setLocationInput(loc)
                     }} />
                 </div>
             </div>

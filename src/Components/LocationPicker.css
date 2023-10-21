@@ -36,9 +36,9 @@
 }
 
 #pac-input {
-    width: 100%;
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
     text-overflow: ellipsis;
+    width: -webkit-fill-available;
+    padding-right: 20px;
 }
 
 #pac-input:focus {
@@ -51,4 +51,20 @@
     font-size: 25px;
     font-weight: 500;
     padding: 6px 12px;
+}
+
+.clear-text-icon {
+    visibility: visible;
+    position: relative;
+    bottom: 22px;
+    color: red;
+    float: right;
+    right: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-container {
+    width: 100%;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
 }

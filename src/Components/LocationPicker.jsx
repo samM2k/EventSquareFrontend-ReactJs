@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './LocationPicker.css'
 
-function LocationPicker({ LocationChangedCallback }) {
+function LocationPicker({ LocationChangedCallback, InitialValue }) {
     const [isLoading, setIsLoading] = useState(true);
 
     async function initialize() {
@@ -66,8 +66,18 @@ function LocationPicker({ LocationChangedCallback }) {
                 defer
             ></script>
             <div className="pac-card" id="pac-card">
-                <div>
-                    <input id="pac-input" type="text" placeholder="Enter a location" />
+                <div className="input-container">
+                    <input id="pac-input" type="text" placeholder="Enter a location" defaultValue={InitialValue?.name ?? ""} />
+                    {
+                        InitialValue != null ?
+                            <ion-icon onClick={() => {
+                                document.getElementById("pac-input").value = "";
+                                LocationChangedCallback(null);
+                            }} name="close-outline" size="small" class="clear-text-icon"></ion-icon>
+                            :
+                            null
+                    }
+
                 </div>
                 <div id="infowindow-content">
                     <span id="place-name" className="title"></span><br />
