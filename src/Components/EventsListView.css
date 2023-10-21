@@ -1,1 +1,4 @@
-.events-list-view {}
+.events-list-view {
+    max-width: 1080px;
+    margin: 0 auto;
+}

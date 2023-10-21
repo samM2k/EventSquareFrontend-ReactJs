@@ -20,15 +20,15 @@ function EventsMapView({ Events }) {
     }, [])
 
     var markers = Events.filter(e => {
-        let lat = e.location?.latitude;
-        let long = e.location?.longitude;
+        let lat = e.location?.coordinates?.latitude;
+        let long = e.location?.coordinates?.longitude;
         if (lat && long)
             return true;
     }).map(e => {
         return {
             position: {
-                lat: e.location.latitude,
-                lng: e.location.longitude
+                lat: e.location.coordinates.latitude,
+                lng: e.location.coordinates.longitude
             },
             popupContent: getMarkupFromEvent(e)
         }

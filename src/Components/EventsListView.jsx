@@ -1,6 +1,7 @@
 import EventListItemView from "./EventListItemView";
 import OverlayButton from "./OverlayButton.jsx"
 import { useNavigate } from "react-router-dom";
+import './EventsListView.css';
 
 function EventsListView({ Events }) {
     const navigate = useNavigate();
