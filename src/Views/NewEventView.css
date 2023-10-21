@@ -2,14 +2,25 @@
     padding: 1%;
 }
 
+.display-flex-responsive {
+    display: flex;
+    flex-direction: row;
+}
+
 @media only screen and (max-width: 800px) {
     .new-event-container {
         padding: 3%;
     }
 
-    .field {
-        max-width: 400px;
+    .form-column {
         margin: 0 auto;
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .display-flex-responsive {
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -53,6 +64,6 @@
     width: -webkit-fill-available;
 }
 
-.form-column>.field * {
+.form-column>.field {
     max-width: 325px;
 }
