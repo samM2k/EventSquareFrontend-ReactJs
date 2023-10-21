@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './LocationPicker.css'
 
-function LocationPicker() {
+function LocationPicker({ LocationChangedCallback }) {
     const [isLoading, setIsLoading] = useState(true);
 
     async function initialize() {
@@ -33,7 +33,7 @@ function LocationPicker() {
 
             var location = {
                 name: place.name,
-                flatNumber: place.address_components.find(a => a.types.includes("flat_number"))?.short_name,
+                flatNumber: place.address_components.find(a => a.types.includes("subpremise"))?.short_name,
                 streetNumber: place.address_components.find(a => a.types.includes("street_number"))?.short_name,
                 streetName: place.address_components.find(a => a.types.includes("route"))?.short_name,
                 locality: place.address_components.find(a => a.types.includes("locality"))?.short_name,
@@ -43,11 +43,12 @@ function LocationPicker() {
 
             };
 
-            console.log(location);
 
             infowindowContent.children["place-name"].textContent = place.name;
             infowindowContent.children["place-address"].textContent =
                 place.formatted_address;
+
+            LocationChangedCallback(location);
         });
 
         setIsLoading(false);

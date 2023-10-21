@@ -18,7 +18,9 @@ function NewEventView({ isAuthorized }) {
 
                 <div className='field'>
                     <label>Location</label>
-                    <LocationPicker />
+                    <LocationPicker LocationChangedCallback={(loc) => {
+                        console.log(loc);
+                    }} />
                 </div>
             </div>
             <div className='display-flex-column form-column'>
