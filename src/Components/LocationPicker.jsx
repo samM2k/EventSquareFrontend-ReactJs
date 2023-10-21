@@ -4,11 +4,11 @@ import './LocationPicker.css'
 function LocationPicker() {
     const [isLoading, setIsLoading] = useState(true);
 
-    async function initMap() {
+    async function initialize() {
         const { Autocomplete } = await google.maps.importLibrary("places");
         const input = document.getElementById("pac-input");
         const options = {
-            fields: ["formatted_address", "geometry", "name"],
+            fields: ["formatted_address", "geometry", "name", "address_components"],
             strictBounds: false,
         };
 
@@ -22,7 +22,6 @@ function LocationPicker() {
 
         autocomplete.addListener("place_changed", () => {
             infowindow.close();
-
             const place = autocomplete.getPlace();
 
             if (!place.geometry || !place.geometry.location) {
@@ -32,29 +31,30 @@ function LocationPicker() {
                 return;
             }
 
+            var location = {
+                name: place.name,
+                flatNumber: place.address_components.find(a => a.types.includes("flat_number"))?.short_name,
+                streetNumber: place.address_components.find(a => a.types.includes("street_number"))?.short_name,
+                streetName: place.address_components.find(a => a.types.includes("route"))?.short_name,
+                locality: place.address_components.find(a => a.types.includes("locality"))?.short_name,
+                stateRegion: place.address_components.find(a => a.types.includes("administrative_area_level_1"))?.short_name,
+                postcode: place.address_components.find(a => a.types.includes("postal_code"))?.short_name,
+                country: place.address_components.find(a => a.types.includes("country"))?.short_name,
+
+            };
+
+            console.log(location);
 
             infowindowContent.children["place-name"].textContent = place.name;
             infowindowContent.children["place-address"].textContent =
                 place.formatted_address;
         });
 
-
-        // strictBoundsInputElement.addEventListener("change", () => {
-        //     autocomplete.setOptions({
-        //         strictBounds: strictBoundsInputElement.checked,
-        //     });
-        //     if (strictBoundsInputElement.checked) {
-        //         biasInputElement.checked = strictBoundsInputElement.checked;
-        //     }
-
-        //     input.value = "";
-        // });
-
         setIsLoading(false);
     }
 
     useEffect(() => {
-        initMap();
+        initialize();
     }, [])
 
     return (
