@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './LocationPicker.css'
+import config from '../config.js';
 
 function LocationPicker({ LocationChangedCallback, InitialValue }) {
     const [isLoading, setIsLoading] = useState(true);
@@ -58,11 +59,11 @@ function LocationPicker({ LocationChangedCallback, InitialValue }) {
         initialize();
     }, [])
 
+
     return (
         <>
-
             <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3P1fNxX8nVhe7PbgLJJE-8o4fK-mixLk&libraries=places&v=weekly"
+                src={"https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsApiKey + "&libraries=places&v=weekly"}
                 defer
             ></script>
             <div className="pac-card" id="pac-card">

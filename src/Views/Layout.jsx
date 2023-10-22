@@ -20,6 +20,8 @@ function Layout({ Authorized }) {
 
     return (
         <>
+            <script noModule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+
             <NavBar items={navbarItems} />
             <div className="layout-main">
                 <Outlet />
