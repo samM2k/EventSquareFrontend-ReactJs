@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './NewEventView.css';
 import LocationPicker from '../Components/LocationPicker';
 import OverlayButton from '../Components/OverlayButton';
+import GrowableTextArea from '../Components/GrowableTextarea';
 
 function NewEventView({ isAuthorized }) {
     const [locationInput, setLocationInput] = useState(null);
@@ -27,7 +28,7 @@ function NewEventView({ isAuthorized }) {
 
                 <div className='field'>
                     <label>Description</label>
-                    <textarea placeholder="Description" defaultValue={descriptionInput} onChange={setDescriptionInput} />
+                    <GrowableTextArea placeholder="Description" defaultValue={descriptionInput} onChange={setDescriptionInput} />
                 </div>
 
                 <div className='field'>
