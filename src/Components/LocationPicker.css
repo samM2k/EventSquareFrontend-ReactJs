@@ -27,6 +27,7 @@
     font: 400 18px Roboto, Arial, sans-serif;
     font-family: Roboto;
     padding: 0;
+
 }
 
 .pac-controls label {
@@ -38,7 +39,6 @@
 #pac-input {
     text-overflow: ellipsis;
     width: -webkit-fill-available;
-    padding-right: 20px;
 }
 
 #pac-input:focus {
@@ -55,16 +55,15 @@
 
 .clear-text-icon {
     visibility: visible;
-    position: relative;
-    bottom: 22px;
     color: red;
-    float: right;
-    right: 4px;
+    display: inline;
     text-align: center;
     cursor: pointer;
+    height: inherit;
 }
 
 .input-container {
     width: 100%;
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    ;
 }

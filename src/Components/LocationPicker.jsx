@@ -6,53 +6,60 @@ function LocationPicker({ LocationChangedCallback, InitialValue }) {
     const [isLoading, setIsLoading] = useState(true);
 
     async function initialize() {
-        const { Autocomplete } = await google.maps.importLibrary("places");
-        const input = document.getElementById("pac-input");
-        const options = {
-            fields: ["formatted_address", "geometry", "name", "address_components"],
-            strictBounds: false,
-        };
+        try {
 
-        const autocomplete = new Autocomplete(input, options);
+            const { Autocomplete } = await google.maps.importLibrary("places");
 
-        const infowindow = new google.maps.InfoWindow();
-        const infowindowContent = document.getElementById("infowindow-content");
-
-        infowindow.setContent(infowindowContent);
-
-
-        autocomplete.addListener("place_changed", () => {
-            infowindow.close();
-            const place = autocomplete.getPlace();
-
-            if (!place.geometry || !place.geometry.location) {
-                // User entered the name of a Place that was not suggested and
-                // pressed the Enter key, or the Place Details request failed.
-                window.alert("No details available for input: '" + place.name + "'");
-                return;
-            }
-
-            var location = {
-                name: place.name,
-                flatNumber: place.address_components.find(a => a.types.includes("subpremise"))?.short_name,
-                streetNumber: place.address_components.find(a => a.types.includes("street_number"))?.short_name,
-                streetName: place.address_components.find(a => a.types.includes("route"))?.short_name,
-                locality: place.address_components.find(a => a.types.includes("locality"))?.short_name,
-                stateRegion: place.address_components.find(a => a.types.includes("administrative_area_level_1"))?.short_name,
-                postcode: place.address_components.find(a => a.types.includes("postal_code"))?.short_name,
-                country: place.address_components.find(a => a.types.includes("country"))?.short_name,
-
+            const input = document.getElementById("pac-input");
+            const options = {
+                fields: ["formatted_address", "geometry", "name", "address_components"],
+                strictBounds: false,
             };
 
+            const autocomplete = new Autocomplete(input, options);
 
-            infowindowContent.children["place-name"].textContent = place.name;
-            infowindowContent.children["place-address"].textContent =
-                place.formatted_address;
+            const infowindow = new google.maps.InfoWindow();
+            const infowindowContent = document.getElementById("infowindow-content");
 
-            LocationChangedCallback(location);
-        });
+            infowindow.setContent(infowindowContent);
 
-        setIsLoading(false);
+
+            autocomplete.addListener("place_changed", () => {
+                infowindow.close();
+                const place = autocomplete.getPlace();
+
+                if (!place.geometry || !place.geometry.location) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                var location = {
+                    name: place.name,
+                    flatNumber: place.address_components.find(a => a.types.includes("subpremise"))?.short_name,
+                    streetNumber: place.address_components.find(a => a.types.includes("street_number"))?.short_name,
+                    streetName: place.address_components.find(a => a.types.includes("route"))?.short_name,
+                    locality: place.address_components.find(a => a.types.includes("locality"))?.short_name,
+                    stateRegion: place.address_components.find(a => a.types.includes("administrative_area_level_1"))?.short_name,
+                    postcode: place.address_components.find(a => a.types.includes("postal_code"))?.short_name,
+                    country: place.address_components.find(a => a.types.includes("country"))?.short_name,
+
+                };
+
+
+                infowindowContent.children["place-name"].textContent = place.name;
+                infowindowContent.children["place-address"].textContent =
+                    place.formatted_address;
+
+                LocationChangedCallback(location);
+            });
+
+            setIsLoading(false);
+        } catch (ex) {
+            console.log(`Exception thrown on initialize: ${ex.message}`)
+        }
+
     }
 
     useEffect(() => {
@@ -63,8 +70,7 @@ function LocationPicker({ LocationChangedCallback, InitialValue }) {
     return (
         <>
             <script
-                src={"https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsApiKey + "&libraries=places&v=weekly"}
-                defer
+                src={"https://maps.googleapis.com/maps/api/js?key=" + config.googleMapsApiKey + "&libraries=places&v=weekly&callback=initalize"}
             ></script>
             <div className="pac-card" id="pac-card">
                 <div className="input-container">
