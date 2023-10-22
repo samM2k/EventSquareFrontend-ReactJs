@@ -51,6 +51,10 @@
     max-width: 325px;
 }
 
+.create-event-btn {
+    background-color: blue;
+}
+
 @media only screen and (max-width: 800px) {
     .new-event-container {
         padding: 3%;

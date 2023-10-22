@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './NewEventView.css';
 import LocationPicker from '../Components/LocationPicker';
+import OverlayButton from '../Components/OverlayButton';
 
 function NewEventView({ isAuthorized }) {
     const [locationInput, setLocationInput] = useState(null);
@@ -64,8 +65,10 @@ function NewEventView({ isAuthorized }) {
                     <input type="checkbox" />
                     <label>Public</label>
                 </div>
+
             </div>
         </form>
+        <OverlayButton buttonClass="btn-primary" ioniconName="checkmark-outline" />
     </div>);
 }
 

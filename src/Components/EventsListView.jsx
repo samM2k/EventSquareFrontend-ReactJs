@@ -7,7 +7,7 @@ function EventsListView({ Events }) {
     const navigate = useNavigate();
     return (
         <div className='events-list-view'>
-            <OverlayButton onClick={() => navigate("/events/new")} />
+            <OverlayButton ioniconName="plus" onClick={() => navigate("/events/new")} />
             {
                 Events.map(calendarEvent => {
                     return <EventListItemView key={calendarEvent.id} CalendarEvent={calendarEvent} />

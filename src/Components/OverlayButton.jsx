@@ -1,10 +1,10 @@
 import './OverlayButton.css'
 import Overlay from './Overlay.jsx';
-function OverlayButton({ onClick }) {
+function OverlayButton({ onClick, ioniconName, buttonClass }) {
 
     return (
         <Overlay position="bottom-right">
-            <button onClick={onClick} className="overlay-btn btn-dark"><ion-icon name="add" size="large"></ion-icon></button>
+            <button onClick={onClick} className={"overlay-btn " + (buttonClass ?? "")}><ion-icon name={ioniconName} size="large"></ion-icon></button>
         </Overlay>
     );
 }
