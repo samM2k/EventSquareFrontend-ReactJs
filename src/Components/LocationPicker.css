@@ -60,6 +60,7 @@
     text-align: center;
     cursor: pointer;
     height: inherit;
+    width: 9%
 }
 
 .input-container {
