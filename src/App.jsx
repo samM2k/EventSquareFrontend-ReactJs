@@ -11,7 +11,7 @@ import ApiClient from './Models/ApiClient';
 import NewEventView from './Views/NewEventView';
 import config from './config.js';
 
-function App({ loginModel }) {
+function App() {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
     function pullMapsApi() {
