@@ -87,6 +87,29 @@ class ApiClient {
             return new ApiResult(false, e.responseText);
         }
     }
+
+    static postEvent = async (calendarEvent) => {
+        var settings = {
+            "url": ApiClient.domain + "/api/events",
+            "method": "POST",
+            "timeout": 0,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            data: JSON.stringify(calendarEvent)
+        };
+
+        try {
+            var response = await $.ajax(settings);
+            return new ApiResult(true, response);
+        } catch (e) {
+            return new ApiResult(false, e.responseText);
+        }
+    }
 }
 
 export default ApiClient;

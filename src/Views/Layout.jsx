@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import NavBar from '../Components/NavBar.jsx'
 import './Layout.css';
 import NavBarItem from "../Models/NavBarItem.js";
+import Toast from "../Components/Toast.jsx";
 
 function Layout({ Authorized }) {
     var navbarItems = [
@@ -21,7 +22,7 @@ function Layout({ Authorized }) {
     return (
         <>
             <script noModule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-
+            <Toast />
             <NavBar items={navbarItems} />
             <div className="layout-main">
                 <Outlet />
