@@ -1,4 +1,4 @@
-import ApiResult from "./ApiResult";
+import ApiResult from "../DataTypes/ApiResult";
 
 class ApiClient {
     static domain = "https://localhost:7031";
