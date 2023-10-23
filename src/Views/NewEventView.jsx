@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import './NewEventView.css';
-import LocationPicker from '../Components/LocationPicker';
+import LocationPicker from '../Components/Input/LocationPicker';
 import OverlayButton from '../Components/OverlayButton';
-import GrowableTextArea from '../Components/GrowableTextarea';
+import GrowableTextArea from '../Components/Input/GrowableTextarea';
 
 function NewEventView({ isAuthorized }) {
     const [locationInput, setLocationInput] = useState(null);

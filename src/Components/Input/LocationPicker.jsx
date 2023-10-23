@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './LocationPicker.css'
-import config from '../config.js';
+import config from '../../config.js';
 
 function LocationPicker({ LocationChangedCallback, InitialValue }) {
     const [isLoading, setIsLoading] = useState(true);
