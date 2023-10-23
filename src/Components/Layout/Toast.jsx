@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Toast.css'
 
 function Toast() {
@@ -7,12 +7,14 @@ function Toast() {
     const [header, setHeader] = useState("Toast Header");
     const [minutesAgo, setMinutesAgo] = useState(0);
 
-    window.Toast = (header, message) => {
-        setHeader(header);
-        setMessage(message);
-        setMinutesAgo(0);
-        setVisible(true);
-    }
+    useEffect(() => {
+        window.Toast = (header, message) => {
+            setHeader(header);
+            setMessage(message);
+            setMinutesAgo(0);
+            setVisible(true);
+        }
+    }, [])
 
     if (visible) {
         setTimeout(() => setVisible(false), 30000)

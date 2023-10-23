@@ -1,8 +1,8 @@
 import { Outlet, Link } from "react-router-dom";
-import NavBar from '../Components/NavBar.jsx'
+import NavBar from '../Components/Layout/NavBar.jsx'
 import './Layout.css';
 import NavBarItem from "../Models/NavBarItem.js";
-import Toast from "../Components/Toast.jsx";
+import Toast from "../Components/Layout/Toast.jsx";
 
 function Layout({ Authorized }) {
     var navbarItems = [
