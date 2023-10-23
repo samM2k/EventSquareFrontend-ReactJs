@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ApiClient from '../Models/ApiClient';
+import ApiClient from '../Helpers/ApiClient';
 import EventsListView from '../Components/EventsListView';
 import EventsMapView from '../Components/EventsMapView';
 import './EventsView.css';

@@ -3,7 +3,7 @@ import './NewEventView.css';
 import LocationPicker from '../Components/Input/LocationPicker';
 import OverlayButton from '../Components/OverlayButton';
 import GrowableTextArea from '../Components/Input/GrowableTextarea';
-import ApiClient from '../Models/ApiClient';
+import ApiClient from '../Helpers/ApiClient';
 
 function NewEventView({ isAuthorized }) {
     const [locationInput, setLocationInput] = useState(null);

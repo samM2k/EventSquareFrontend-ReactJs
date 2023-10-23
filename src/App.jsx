@@ -7,7 +7,7 @@ import Home from './Views/Home'
 import Layout from './Views/Layout'
 import LogoutView from './Views/LogoutView'
 import EventsView from './Views/EventsView'
-import ApiClient from './Models/ApiClient';
+import ApiClient from './Helpers/ApiClient';
 import NewEventView from './Views/NewEventView';
 import config from './config.js';
 
