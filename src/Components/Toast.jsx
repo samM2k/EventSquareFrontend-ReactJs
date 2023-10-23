@@ -1,20 +1,38 @@
+import { useState } from 'react';
 import './Toast.css'
 
 function Toast() {
-    return (
-        <div id="toast-container">
-            <div id="toast" data-autohide="false">
-                <div className="toast-header">
-                    <strong className="mr-auto text-primary">Toast Header</strong>
-                    <small className="text-muted">5 mins ago</small>
-                    <button type="button" className="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-                </div>
-                <div className="toast-body">
-                    Some text inside the toast body
+    const [visible, setVisible] = useState(true);
+    const [message, setMessage] = useState("Some text inside the toast body");
+    const [header, setHeader] = useState("Toast Header");
+    const [minutesAgo, setMinutesAgo] = useState(0);
+
+    window.Toast = (header, message) => {
+        setHeader(header);
+        setMessage(message);
+        setMinutesAgo(0);
+        setVisible(true);
+    }
+
+    if (visible) {
+        setTimeout(() => setVisible(false), 30000)
+        return (
+            <div id="toast-container">
+                <div id="toast" data-autohide="false">
+                    <div className="toast-header">
+                        <strong className="mr-auto text-primary">{header}</strong>
+                        <small className="text-muted">{minutesAgo ? minutesAgo + " mins ago" : "Now"}</small>
+                        <button onClick={() => setVisible(false)} type="button" className="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                    </div>
+                    <div className="toast-body">
+                        {message}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    return <></>;
 }
 
 export default Toast;

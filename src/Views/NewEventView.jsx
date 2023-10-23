@@ -19,29 +19,32 @@ function NewEventView({ isAuthorized }) {
 
 
     async function submitNewEvent() {
-        // var calendarEvent = {
-        //     name: nameInput,
-        //     description: descriptionInput,
-        //     startDateTime: startDateInput + "T" + startTimeInput + ":00",
-        //     endDateTime: endDateInput + "T" + endTimeInput + ":00",
-        //     isPhysical: isPhysicalInput,
-        //     isVirtual: isVirtualInput,
-        //     visibility: isPublicInput ? 2 : 0,
-        //     location: locationInput,
-        //     rsvps: [],
-        //     owner: ""
-        // }
+        var calendarEvent = {
+            name: nameInput,
+            description: descriptionInput,
+            startDateTime: startDateInput + "T" + startTimeInput + ":00",
+            endDateTime: endDateInput + "T" + endTimeInput + ":00",
+            isPhysical: isPhysicalInput,
+            isVirtual: isVirtualInput,
+            visibility: isPublicInput ? 2 : 0,
+            location: locationInput,
+            rsvps: [],
+            owner: ""
+        }
 
-        // console.log(calendarEvent)
+        console.log(calendarEvent)
 
-        // var result = await ApiClient.postEvent(calendarEvent);
-        // console.log(result);
-        // if (result.Success) {
-        //     //navigate("/events")
-        // } else {
-        //     //toast validation error
-        //     console.log(result.Body)
-        // }
+        var result = await ApiClient.postEvent(calendarEvent);
+        console.log(result);
+        if (result.Success) {
+            //navigate("/events")
+            window.Toast("Event published", "You can now see your event under the \"My events\" section");
+        } else {
+            //toast validation error
+            console.log(result.Body)
+            window.Toast("Failed to publish event", "There was an error processing your request.");
+        }
+
     }
 
     return (<div className="new-event-container">
