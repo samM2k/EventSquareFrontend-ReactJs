@@ -1,2 +1,11 @@
-body {
+#back-icon {
+    font-size: x-large;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.navbar-brand {
+    margin: 0;
 }
