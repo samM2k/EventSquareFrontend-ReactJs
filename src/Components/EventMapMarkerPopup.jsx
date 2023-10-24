@@ -1,14 +1,26 @@
 import AddressHelper from "../Helpers/AddressHelper";
+import "./EventMapMarkerPopup.css";
 
 function EventMapMarkerPopup({ calendarEvent }) {
+
     return (
         <div className="marker-card">
-            <div>
+            <h5>
                 {calendarEvent.name}
-            </div>
-            <div>
+            </h5>
+
+            <p>
+                {calendarEvent.description}
+            </p>
+
+            <p>
+                {(calendarEvent.location.name && !(calendarEvent.location.name.startsWith(calendarEvent.location.streetNumber + " " + calendarEvent.location.streetName)))
+                    ? <>{calendarEvent.location.name}<br /></>
+                    : null
+                }
                 {AddressHelper.FormatAddress(calendarEvent.location)}
-            </div>
+            </p>
+            <a href={"/events/" + calendarEvent.id}>View</a>
         </div>
     );
 }
