@@ -4,6 +4,7 @@ import LocationPicker from '../Components/Input/LocationPicker';
 import OverlayButton from '../Components/OverlayButton';
 import GrowableTextArea from '../Components/Input/GrowableTextarea';
 import ApiClient from '../Helpers/ApiClient';
+import { useNavigate } from 'react-router-dom';
 
 function NewEventView({ isAuthorized }) {
     const [locationInput, setLocationInput] = useState(null);
@@ -16,7 +17,7 @@ function NewEventView({ isAuthorized }) {
     const [isPhysicalInput, setIsPhysicalInput] = useState(false);
     const [isVirtualInput, setIsVirtualInput] = useState(false);
     const [isPublicInput, setIsPublicInput] = useState(false);
-
+    const navigate = useNavigate();
 
     async function submitNewEvent() {
         var calendarEvent = {
@@ -37,8 +38,8 @@ function NewEventView({ isAuthorized }) {
         var result = await ApiClient.postEvent(calendarEvent);
         console.log(result);
         if (result.Success) {
-            //navigate("/events")
             window.Toast("Event published", "You can now see your event under the \"My events\" section");
+            navigate(-1)
         } else {
             //toast validation error
             console.log(result.Body)
