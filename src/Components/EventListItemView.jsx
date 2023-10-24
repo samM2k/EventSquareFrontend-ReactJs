@@ -1,6 +1,9 @@
+import { Link, useNavigate } from 'react-router-dom';
 import './EventListItemView.css';
 
 function EventListItemView({ CalendarEvent }) {
+    const navigate = useNavigate();
+
     function parseDateTime(dt) {
         var date = new Date(Date.parse(dt))
         var returnString = "";
@@ -40,7 +43,7 @@ function EventListItemView({ CalendarEvent }) {
                 <div className='event-date'>{parseDateTime(CalendarEvent.startDateTime)} - {parseDateTime(CalendarEvent.endDateTime)}</div>
                 <div className='event-location'>{formatLocation(CalendarEvent.location)}</div>
             </div>
-            <div className='card-action'><button className='btn btn-dark'>View details</button></div>
+            <div className='card-action'><button className='btn btn-dark' onClick={() => navigate("/events/" + CalendarEvent.id)}>View details</button></div>
         </div>
     );
 }
