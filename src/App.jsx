@@ -10,6 +10,7 @@ import EventsView from './Views/EventsView'
 import ApiClient from './Helpers/ApiClient';
 import NewEventView from './Views/NewEventView';
 import config from './config.js';
+import EventDetailsView from './Views/EventDetailsView';
 
 function App() {
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -49,6 +50,7 @@ function App() {
                     <Route path="logout" element={<LogoutView LogoutFunction={logoutFunction} />} />
                     <Route path="events" element={<EventsView IsAuthorized={userIsLoggedIn} />} />
                     <Route path="events/new" element={<NewEventView IsAuthorized={userIsLoggedIn} />} />
+                    <Route path="events/:id" element={<EventDetailsView />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Route>
             </Routes>
