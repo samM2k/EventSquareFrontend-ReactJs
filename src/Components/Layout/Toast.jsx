@@ -17,7 +17,7 @@ function Toast() {
     }, [])
 
     if (visible) {
-        setTimeout(() => setVisible(false), 30000)
+        setTimeout(() => setVisible(false), 10000)
         return (
             <div id="toast-container">
                 <div id="toast" data-autohide="false">
