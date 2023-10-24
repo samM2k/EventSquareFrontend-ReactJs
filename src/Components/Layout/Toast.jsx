@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './Toast.css'
 
 function Toast() {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [message, setMessage] = useState("Some text inside the toast body");
     const [header, setHeader] = useState("Toast Header");
     const [minutesAgo, setMinutesAgo] = useState(0);

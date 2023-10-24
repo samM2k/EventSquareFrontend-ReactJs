@@ -88,6 +88,25 @@ class ApiClient {
         }
     }
 
+    static getEvent = async (id) => {
+        var settings = {
+            "url": ApiClient.domain + "/api/events/" + id,
+            "method": "GET",
+            "timeout": 0,
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true
+        };
+
+        try {
+            var response = await $.ajax(settings);
+            return new ApiResult(true, response);
+        } catch (e) {
+            return new ApiResult(false, e.responseText);
+        }
+    }
+
     static postEvent = async (calendarEvent) => {
         var settings = {
             "url": ApiClient.domain + "/api/events",
