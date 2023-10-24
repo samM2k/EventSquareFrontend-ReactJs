@@ -1,0 +1,24 @@
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 5px;
+    background-color: #1d1d1d;
+    width: min-content;
+}
+
+.signup-view-container {
+    margin: 0 auto;
+}
+
+.signup-form>* {
+    margin-bottom: 15px;
+}
+
+.signup-form>*:last-child {
+    margin-bottom: initial;
+}
+
+.validation-error {
+    color: red;
+}

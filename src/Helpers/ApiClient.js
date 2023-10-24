@@ -30,6 +30,40 @@ class ApiClient {
         }
     }
 
+    static signup = async (email, password) => {
+        var settings = {
+            "url": ApiClient.domain + "/api/account/signup",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json",
+            },
+            "data": JSON.stringify({
+                "email": email,
+                "password": password
+            }),
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true
+        };
+
+        try {
+            var response = await $.ajax(settings);
+            return new ApiResult(true, response);
+        } catch (e) {
+            var errors = e.responseJSON.errors;
+
+            return new ApiResult(false, errors.Email
+                ? errors.Email[0]
+                : errors.Password
+                    ? errors.Password[0]
+                    : errors.length
+                        ? errors[0].description
+                        : "Unknown error");
+        }
+    }
+
     static logout = async () => {
         var settings = {
             "url": ApiClient.domain + "/api/account/logout",

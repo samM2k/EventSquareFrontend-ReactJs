@@ -33,7 +33,7 @@ function EventDetailsView() {
     }
 
     return (
-        <div className="grow-1">
+        <div className="event-details-container">
             {calendarEvent.location != null
                 ? <div className="single-event-map">
                     <MapView Markers={[{ position: { lat: calendarEvent.location.coordinates.latitude, lng: calendarEvent.location.coordinates.longitude }, popupContent: getPopupHtml(calendarEvent) }]} Center={{ lat: calendarEvent.location.coordinates.latitude, lng: calendarEvent.location.coordinates.longitude }} Zoom={14} />
@@ -41,8 +41,7 @@ function EventDetailsView() {
                 : null
             }
             <div>
-                <p>Event ID: {calendarEvent.id}</p>
-                <p>Event Name: {calendarEvent.name}</p>
+                <h3>{calendarEvent.name}</h3>
                 <p>Event Description: {calendarEvent.description}</p>
             </div>
         </div>
