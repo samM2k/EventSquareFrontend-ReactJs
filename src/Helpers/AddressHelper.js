@@ -1,5 +1,5 @@
-class LocationHelper {
-    static TryFormatAddress(location) {
+class AddressHelper {
+    static FormatAddress(locationObj) {
         try {
             var location = "";
             if (!locationObj)
@@ -14,9 +14,11 @@ class LocationHelper {
             location += " " + locationObj.postcode;
             location += ", " + locationObj.country;
 
-            return { success: true, output: location };
+            return location;
         } catch (e) {
-            return { success: false, output: e.toString() };
+            return "";
         }
     }
 }
+
+export default AddressHelper

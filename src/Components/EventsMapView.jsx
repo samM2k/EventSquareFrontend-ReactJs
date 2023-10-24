@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import MapView from "./MapView";
+import { useNavigate } from "react-router-dom";
+import ReactDOMServer from 'react-dom/server';
+import PageNotFound from "../Views/PageNotFound";
+import EventDetailsView from "../Views/EventDetailsView";
+import EventMapMarkerPopup from "./EventMapMarkerPopup";
 
 function EventsMapView({ Events }) {
     const [userLocation, setUserLocation] = useState(null);
     const [requestComplete, setRequestComplete] = useState(false)
+    const navigate = useNavigate();
+    const getComponentHTML = (e) => {
+        return ReactDOMServer.renderToString(<EventMapMarkerPopup calendarEvent={e} />);
+    };
 
     function positionReturnedCallback(position) {
         setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
@@ -30,7 +39,7 @@ function EventsMapView({ Events }) {
                 lat: e.location.coordinates.latitude,
                 lng: e.location.coordinates.longitude
             },
-            popupContent: getMarkupFromEvent(e),
+            popupContent: getComponentHTML(e),
             accessibilityTitle: e.name
         }
     });
@@ -44,19 +53,6 @@ function EventsMapView({ Events }) {
         );
 }
 
-
-function getMarkupFromEvent(e) {
-    var result = `
-            <div>
-                ${e.name}
-            </div>
-            <div>
-                ${formatLocation(e.location)}
-            </div>
-        `;
-
-    return result;
-}
 
 function formatLocation(locationObj) {
     try {
