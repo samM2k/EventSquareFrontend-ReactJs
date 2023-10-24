@@ -38,8 +38,10 @@ function MapView({ Markers, Zoom, Center }) {
 
             marker.addListener("click", ({ domEvent, latLng }) => {
                 infoWindow.close();
-                infoWindow.setContent(m.popupContent);
-                infoWindow.open(marker.map, marker);
+                if (m.popupContent) {
+                    infoWindow.setContent(m.popupContent);
+                    infoWindow.open(marker.map, marker);
+                }
             });
         })
 

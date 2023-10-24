@@ -1,0 +1,8 @@
+.single-event-map {
+    height: 30vh;
+    flex-grow: 1;
+}
+
+.grow-1 {
+    flex-grow: 1;
+}

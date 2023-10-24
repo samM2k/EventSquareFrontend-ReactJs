@@ -5,6 +5,8 @@ import ReactDOMServer from 'react-dom/server';
 import PageNotFound from "../Views/PageNotFound";
 import EventDetailsView from "../Views/EventDetailsView";
 import EventMapMarkerPopup from "./EventMapMarkerPopup";
+import './EventsMapView.css';
+
 
 function EventsMapView({ Events }) {
     const [userLocation, setUserLocation] = useState(null);
@@ -49,7 +51,7 @@ function EventsMapView({ Events }) {
             <p>Fetching location...</p>)
     else
         return (
-            <div><MapView Zoom={userLocation ? 10 : 3} Center={userLocation} Markers={markers} /></div>
+            <div className="events-map"><MapView Zoom={userLocation ? 10 : 3} Center={userLocation} Markers={markers} /></div>
         );
 }
 
