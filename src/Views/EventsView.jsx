@@ -13,7 +13,7 @@ function EventsView({ IsAuthorized }) {
   function getEventsView() {
     switch (viewTypes.indexOf(viewType)) {
       case 0:
-        return <EventsListView Events={events} />
+        return <EventsListView IsAuthorized={IsAuthorized} Events={events} />
       case 1:
         return <EventsMapView Events={events} />
     }

@@ -6,7 +6,7 @@ import GrowableTextArea from '../Components/Input/GrowableTextarea';
 import ApiClient from '../Helpers/ApiClient';
 import { useNavigate } from 'react-router-dom';
 
-function NewEventView({ isAuthorized }) {
+function NewEventView({ IsAuthorized }) {
     const [locationInput, setLocationInput] = useState(null);
     const [nameInput, setNameInput] = useState("");
     const [descriptionInput, setDescriptionInput] = useState("");
@@ -47,6 +47,13 @@ function NewEventView({ isAuthorized }) {
         }
 
     }
+
+    if (!IsAuthorized)
+        return (
+            <div>
+                <p>Unauthorized, please login to access this page.</p>
+            </div>
+        );
 
     return (<div className="new-event-container">
         <form className='display-flex-responsive'>
