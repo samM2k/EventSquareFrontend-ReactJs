@@ -33,7 +33,7 @@ function MapView({ Markers, Zoom, Center }) {
             var marker = new AdvancedMarkerElement({
                 map,
                 position: m.position,
-                title: "Uluru national park- some extra text string",
+                title: m.accessibilityTitle,
             });
 
             marker.addListener("click", ({ domEvent, latLng }) => {

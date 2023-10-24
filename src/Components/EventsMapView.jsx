@@ -30,7 +30,8 @@ function EventsMapView({ Events }) {
                 lat: e.location.coordinates.latitude,
                 lng: e.location.coordinates.longitude
             },
-            popupContent: getMarkupFromEvent(e)
+            popupContent: getMarkupFromEvent(e),
+            accessibilityTitle: e.name
         }
     });
 
