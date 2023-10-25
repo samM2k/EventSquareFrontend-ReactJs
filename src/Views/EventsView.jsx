@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ApiClient from '../Helpers/ApiClient';
-import EventsListView from '../Components/EventsListView';
 import EventsMapView from '../Components/EventsMapView';
 import './EventsView.css';
+import ListView from '../Components/ListView';
+import EventListItemView from "../Components/EventListItemView";
 
 function EventsView({ IsAuthorized }) {
   const viewTypes = ["list", "map"];
@@ -13,7 +14,13 @@ function EventsView({ IsAuthorized }) {
   function getEventsView() {
     switch (viewTypes.indexOf(viewType)) {
       case 0:
-        return <EventsListView IsAuthorized={IsAuthorized} Events={events} />
+        return <ListView IsAuthorized={IsAuthorized} AddEntryRoute="/events/new">
+          {
+            events.map(calendarEvent => {
+              return <EventListItemView key={calendarEvent.id} CalendarEvent={calendarEvent} />
+            })
+          }
+        </ListView>
       case 1:
         return <EventsMapView Events={events} />
     }
