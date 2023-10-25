@@ -55,7 +55,7 @@
     background-color: blue;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 991px) {
     .new-event-container {
         padding: 3%;
     }

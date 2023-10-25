@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import MapView from "./MapView";
 import { useNavigate } from "react-router-dom";
 import ReactDOMServer from 'react-dom/server';
-import PageNotFound from "../Views/PageNotFound";
-import EventDetailsView from "../Views/EventDetailsView";
 import EventMapMarkerPopup from "./EventMapMarkerPopup";
 import './EventsMapView.css';
 
@@ -13,7 +11,7 @@ function EventsMapView({ Events }) {
     const [requestComplete, setRequestComplete] = useState(false)
     const navigate = useNavigate();
     const getComponentHTML = (e) => {
-        return ReactDOMServer.renderToString(<EventMapMarkerPopup calendarEvent={e} />);
+        return ReactDOMServer.renderToString(<EventMapMarkerPopup includeDetails={true} calendarEvent={e} />);
     };
 
     function positionReturnedCallback(position) {
