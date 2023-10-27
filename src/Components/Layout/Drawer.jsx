@@ -9,8 +9,13 @@ function Drawer({ visible, setVisibility, buttonLabel, children }) {
 
     return (
         <>
-            <div id="drawer" className={visible ? "drawer bg-dark visible" : "drawer bg-dark"} >
-                {children}
+            <div id="drawer-container" className={visible ? "" : "display-none"} >
+                <div id="drawer" className={"drawer bg-dark"}>
+                    {children}
+                </div>
+                <div onClick={() => {
+                    setVisibility(false);
+                }} id="touch-space"></div>
             </div>
             <button onClick={toggleDrawer}>{buttonLabel}</button>
         </>

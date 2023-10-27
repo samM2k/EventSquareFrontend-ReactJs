@@ -1,17 +1,27 @@
 .drawer {
-    position: fixed;
-    left: 0;
-    top: 0;
     width: 40vw;
-    height: 100vh;
     opacity: 90%;
     box-shadow: 0 2px 7px 1px rgba(0, 0, 0, .3);
     color: white;
-    visibility: hidden;
 }
 
-.visible {
-    visibility: show;
+#drawer-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: visible;
+}
+
+#touch-space {
+    flex-grow: 1;
+}
+
+.display-none {
+    display: none !important;
 }
 
 @media only screen and (max-width: 991px) {
