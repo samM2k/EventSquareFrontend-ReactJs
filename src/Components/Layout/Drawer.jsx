@@ -1,11 +1,24 @@
 import { useEffect, useState } from "react";
 import './Drawer.css'
 
-function Drawer({ visible, setVisibility, buttonLabel, children }) {
-
-    function toggleDrawer() {
-        setVisibility(!visible);
-    }
+function Drawer() {
+    const [visible, setVisibility] = useState(false);
+    const [children, setChildren] = useState(<></>);
+    useEffect(() => {
+        window.Drawer =
+        {
+            show: () => {
+                setVisibility(true);
+            },
+            hide: () => {
+                setVisibility(false);
+            },
+            toggle: () => {
+                setVisibility(!visible);
+            },
+            setChildren: (newChildren) => setChildren(newChildren),
+        }
+    }, [])
 
     return (
         <>
@@ -17,7 +30,6 @@ function Drawer({ visible, setVisibility, buttonLabel, children }) {
                     setVisibility(false);
                 }} id="touch-space"></div>
             </div>
-            <button onClick={toggleDrawer}>{buttonLabel}</button>
         </>
     );
 }

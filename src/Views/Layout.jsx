@@ -3,6 +3,7 @@ import NavBar from '../Components/Layout/NavBar.jsx'
 import './Layout.css';
 import NavBarItem from "../DataTypes/NavBarItem.js";
 import Toast from "../Components/Layout/Toast.jsx";
+import Drawer from "../Components/Layout/Drawer.jsx";
 
 function Layout({ Authorized }) {
     var navbarItems = [
@@ -23,6 +24,7 @@ function Layout({ Authorized }) {
         <>
             <script noModule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
             <Toast />
+            <Drawer />
             <NavBar items={navbarItems} />
             <div className="layout-main">
                 <Outlet />
