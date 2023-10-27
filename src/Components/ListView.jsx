@@ -4,6 +4,7 @@ import './ListView.css';
 
 function ListView({ IsAuthorized, children, AddEntryRoute }) {
     const navigate = useNavigate();
+
     return (
         <div className='list-view'>
             {
