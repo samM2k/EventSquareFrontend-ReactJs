@@ -13,6 +13,9 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
                     : null
             }
             {children}
+            <div className="events-list-pagination">
+                This is where the pagination will be.
+            </div>
         </div>
     );
 }

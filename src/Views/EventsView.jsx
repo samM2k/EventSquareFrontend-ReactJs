@@ -4,6 +4,7 @@ import EventsMapView from '../Components/EventsMapView';
 import './EventsView.css';
 import ListView from '../Components/ListView';
 import EventListItemView from "../Components/EventListItemView";
+import EventsListView from '../Components/EventsListView';
 
 function EventsView({ IsAuthorized }) {
   const viewTypes = ["list", "map"];
@@ -14,13 +15,7 @@ function EventsView({ IsAuthorized }) {
   function getEventsView() {
     switch (viewTypes.indexOf(viewType)) {
       case 0:
-        return <ListView IsAuthorized={IsAuthorized} AddEntryRoute="/events/new">
-          {
-            events.map(calendarEvent => {
-              return <EventListItemView key={calendarEvent.id} CalendarEvent={calendarEvent} />
-            })
-          }
-        </ListView>
+        return <EventsListView allEvents={events} />;
       case 1:
         return <EventsMapView Events={events} />
     }
