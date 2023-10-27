@@ -2,17 +2,25 @@ import { useState } from "react";
 import EventListItemView from "./EventListItemView";
 import ListView from "./ListView";
 import Drawer from "./Layout/Drawer.jsx";
+import './EventsListView.css'
 
 function EventsListView({ allEvents }) {
     const [filteredEvents, setFilteredEvents] = useState(allEvents);
     const [showDrawer, setShowDrawer] = useState(false);
-    const [filterPublic, setFilterPublic] = useState(false);
+    const [publicFilter, setPublicFilter] = useState(false);
+    const [nameFilter, setNameFilter] = useState("");
+    const [descriptionFilter, setDescriptionFilter] = useState("");
+
 
     const filterTest = () => {
         var newEvents;
         newEvents = allEvents;
-        if (filterPublic)
+        if (publicFilter)
             newEvents = newEvents.filter(ev => ev.visibility == 2);
+        if (nameFilter)
+            newEvents = newEvents.filter(ev => ev.name.toLowerCase().includes(nameFilter.toLowerCase()));
+        if (descriptionFilter)
+            newEvents = newEvents.filter(ev => ev.description.toLowerCase().includes(descriptionFilter.toLowerCase()));
         setFilteredEvents(newEvents);
         setShowDrawer(false);
     };
@@ -21,11 +29,37 @@ function EventsListView({ allEvents }) {
             <div className="events-list-filters">
                 <Drawer visible={showDrawer} setVisibility={setShowDrawer} buttonLabel="Filters">
                     This is where the filters will go!
-                    <label>Public</label>
-                    <input value={filterPublic} onChange={(e) => {
-                        setFilterPublic(e.target.checked)
-                    }} type="checkbox" />
-                    <button onClick={filterTest}>Apply</button>
+
+                    <div className="filters">
+
+                        {/* Name filter */}
+                        <label htmlFor="name-filter-input">
+                            Name
+                        </label>
+                        <input id="name-filter-input" value={nameFilter} onChange={(e) => {
+                            setNameFilter(e.target.value)
+                        }} type="text" />
+
+                        {/* Descriptoin filter */}
+                        <label htmlFor="desc-filter-input">
+                            Description
+                        </label>
+                        <input id="desc-filter-input" value={descriptionFilter} onChange={(e) => {
+                            setDescriptionFilter(e.target.value)
+                        }} type="text" />
+
+                        {/* Public filter */}
+                        <div className="checkbox-filter">
+                            <input id="public-filter-checkbox" value={publicFilter} onChange={(e) => {
+                                setPublicFilter(e.target.checked)
+                            }} type="checkbox" />
+                            <label htmlFor="public-filter-checkbox">
+                                Public
+                            </label>
+                        </div>
+
+                        <button onClick={filterTest}>Apply</button>
+                    </div>
                 </Drawer>
             </div>
             <ListView AddEntryRoute="/events/new">

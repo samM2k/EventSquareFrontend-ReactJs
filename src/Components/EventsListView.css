@@ -1,0 +1,20 @@
+.filters {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    justify-content: center;
+    height: 100%;
+    vertical-align: center;
+    opacity: 100%;
+}
+
+.checkbox-filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.checkbox-filter>* {
+    margin: auto 0
+}
