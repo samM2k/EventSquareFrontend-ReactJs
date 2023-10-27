@@ -6,13 +6,13 @@ import Drawer from "./Layout/Drawer.jsx";
 function EventsListView({ allEvents }) {
     const [filteredEvents, setFilteredEvents] = useState(allEvents);
     const [showDrawer, setShowDrawer] = useState(false);
+    const [filterPublic, setFilterPublic] = useState(false);
 
     const filterTest = () => {
         var newEvents;
-        if (filteredEvents == allEvents)
-            newEvents = allEvents.filter(ev => ev.location != null);
-        else
-            newEvents = allEvents;
+        newEvents = allEvents;
+        if (filterPublic)
+            newEvents = newEvents.filter(ev => ev.visibility == 2);
         setFilteredEvents(newEvents);
         setShowDrawer(false);
     };
@@ -21,6 +21,10 @@ function EventsListView({ allEvents }) {
             <div className="events-list-filters">
                 <Drawer visible={showDrawer} setVisibility={setShowDrawer} buttonLabel="Filters">
                     This is where the filters will go!
+                    <label>Public</label>
+                    <input value={filterPublic} onChange={(e) => {
+                        setFilterPublic(e.target.checked)
+                    }} type="checkbox" />
                     <button onClick={filterTest}>Apply</button>
                 </Drawer>
             </div>
