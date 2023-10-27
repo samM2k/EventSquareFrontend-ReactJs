@@ -1,17 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './Drawer.css'
 
-function Drawer({ buttonLabel, children }) {
-
-    const [visible, setVisible] = useState(false);
+function Drawer({ visible, setVisibility, buttonLabel, children }) {
 
     function toggleDrawer() {
-        setVisible(!visible);
+        setVisibility(!visible);
     }
 
     return (
         <>
-            <div className={visible ? "drawer bg-dark visible" : "drawer bg-dark"} >
+            <div id="drawer" className={visible ? "drawer bg-dark visible" : "drawer bg-dark"} >
                 {children}
             </div>
             <button onClick={toggleDrawer}>{buttonLabel}</button>

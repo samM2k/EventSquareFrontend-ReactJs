@@ -2,7 +2,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 50vw;
+    width: 40vw;
     height: 100vh;
     opacity: 90%;
     box-shadow: 0 2px 7px 1px rgba(0, 0, 0, .3);
@@ -12,4 +12,18 @@
 
 .visible {
     visibility: show;
+}
+
+@media only screen and (max-width: 991px) {
+    .drawer {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 90%;
+        box-shadow: 0 2px 7px 1px rgba(0, 0, 0, .3);
+        color: white;
+        visibility: hidden;
+    }
 }

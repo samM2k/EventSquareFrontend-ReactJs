@@ -5,6 +5,7 @@ import Drawer from "./Layout/Drawer.jsx";
 
 function EventsListView({ allEvents }) {
     const [filteredEvents, setFilteredEvents] = useState(allEvents);
+    const [showDrawer, setShowDrawer] = useState(false);
 
     const filterTest = () => {
         var newEvents;
@@ -12,13 +13,15 @@ function EventsListView({ allEvents }) {
             newEvents = allEvents.filter(ev => ev.location != null);
         else
             newEvents = allEvents;
-        setFilteredEvents(newEvents)
+        setFilteredEvents(newEvents);
+        setShowDrawer(false);
     };
     return (
         <div className="events-list-view">
             <div className="events-list-filters">
-                <Drawer buttonLabel="Filters">
+                <Drawer visible={showDrawer} setVisibility={setShowDrawer} buttonLabel="Filters">
                     This is where the filters will go!
+                    <button onClick={filterTest}>Apply</button>
                 </Drawer>
             </div>
             <ListView AddEntryRoute="/events/new">
