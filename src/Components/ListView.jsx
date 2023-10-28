@@ -6,12 +6,40 @@ import React, { useEffect, useState } from "react";
 function ListView({ IsAuthorized, children, AddEntryRoute }) {
     const navigate = useNavigate();
     const [childrenToShow, setChildrenToShow] = useState(null)
+    const [pages, setPages] = useState(1);
     const [page, setPage] = useState(0);
 
 
     useEffect(() => {
-        setChildrenToShow(React.Children.toArray(children))
+        var allChildren = React.Children.toArray(children);
+        setChildrenToShow(allChildren.slice(0, 10))
+        setPages(Math.ceil(allChildren.length / 10))
     }, [children])
+
+    function updatePage(n) {
+        if (n < 0) {
+            n = 0
+        }
+        if (n <= pages) {
+            n = pages - 1;
+        }
+        var allChildren = React.Children.toArray(children);
+        var startIndex = n * 10;
+        var newChildren = allChildren.slice(startIndex, startIndex + 10);
+        setPage(n);
+        setChildrenToShow(newChildren);
+    }
+
+    function getPaginationButtons() {
+        var childs = [];
+        for (let i = 0; i < pages; i++)
+            childs.push(
+                <li className={i == page ? "page-item active" : "page-item"}><a className="page-link" href="#" onClick={() => updatePage(i)}>{i + 1}</a></li>
+            )
+
+        return (<>{childs}</>);
+    }
+
 
     return (
         <div className='list-view'>
@@ -25,14 +53,11 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
                 This is where the pagination will be.
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
-                        <li className="page-item"><a className="page-link" href="#" onClick={() => setPage((page - 1) > 0 ? page - 1 : 0)}>Previous</a></li>
-                        <li className="page-item active"><a className="page-link" href="#" onClick={() => setPage(0)}>1</a></li>
-                        <li className="page-item"><a className="page-link" href="#" onClick={() => setPage(1)}>2</a></li>
-                        <li className="page-item"><a className="page-link" href="#" onClick={() => setPage(2)}>3</a></li>
-                        <li className="page-item"><a className="page-link" href="#" onClick={() => setPage(page + 1)}>Next</a></li>
+                        <li className="page-item"><a className="page-link" href="#" onClick={() => updatePage(page - 1)}>Previous</a></li>
+                        {getPaginationButtons()}
+                        <li className="page-item"><a className="page-link" href="#" onClick={() => updatePage(page + 1)}>Next</a></li>
                     </ul>
                 </nav>
-                Current Page: {page}
             </div>
         </div>
     );
