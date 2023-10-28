@@ -79,6 +79,8 @@ class ApiClient {
             var response = await $.ajax(settings);
             return new ApiResult(true, response);
         } catch (e) {
+            if (e.status > 399 && e.status < 501)
+                return new ApiResult(true, null);
             return new ApiResult(false, e.responseText);
         }
     }
@@ -96,7 +98,7 @@ class ApiClient {
 
         try {
             var response = await $.ajax(settings);
-            return new ApiResult(true, null);
+            return new ApiResult(true, response);
         } catch (e) {
             return new ApiResult(false, e.responseText);
         }

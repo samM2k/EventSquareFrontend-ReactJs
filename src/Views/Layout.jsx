@@ -4,14 +4,18 @@ import './Layout.css';
 import NavBarItem from "../DataTypes/NavBarItem.js";
 import Toast from "../Components/Layout/Toast.jsx";
 import Drawer from "../Components/Layout/Drawer.jsx";
+import { useAuth } from "../AuthContext.jsx";
+import { useEffect, useState } from "react";
 
-function Layout({ Authorized }) {
+function Layout() {
+    const { authModel } = useAuth();
+
     var navbarItems = [
         new NavBarItem("Home", "/"),
         new NavBarItem("Events", "/events"),
     ];
 
-    if (Authorized) {
+    if (authModel.isAuthorized) {
         navbarItems.push(new NavBarItem("Logout", "/logout"))
     } else {
         navbarItems = navbarItems.concat([

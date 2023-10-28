@@ -6,7 +6,7 @@ import ListView from '../Components/ListView';
 import EventListItemView from "../Components/EventListItemView";
 import EventsListView from '../Components/EventsListView';
 
-function EventsView({ IsAuthorized }) {
+function EventsView() {
   const viewTypes = ["list", "map"];
   const [viewType, setViewType] = useState(viewTypes[0]);
 

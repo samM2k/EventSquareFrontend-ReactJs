@@ -2,8 +2,10 @@ import { useState } from 'react';
 import './SignupView.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import ApiClient from '../Helpers/ApiClient';
+import { useAuth } from '../AuthContext';
 
-function SignupView({ Authenticated, SignupFunction }) {
+function SignupView() {
+    const authModel = useAuth();
     const navigate = useNavigate();
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
@@ -14,7 +16,7 @@ function SignupView({ Authenticated, SignupFunction }) {
         setTimeout(() => { setValidationErrorMessage("") }, 5000);
     }
 
-    if (!Authenticated)
+    if (!authModel.isAuthenticated)
         return (
             <div className='signup-view-container'>
                 <div className="signup-form">
@@ -32,9 +34,9 @@ function SignupView({ Authenticated, SignupFunction }) {
                             return;
                         }
 
-                        SignupFunction(emailInput, passwordInput).then(result => {
-                            if (!result.Success) {
-                                showValidationError("Error occurred on attempting signup: " + result.Body);
+                        authModel.signup(emailInput, passwordInput).then(result => {
+                            if (result) {
+                                showValidationError("Error occurred on attempting signup: " + result);
                             } else {
                                 navigate("/");
                             }

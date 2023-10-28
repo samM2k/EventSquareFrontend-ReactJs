@@ -5,8 +5,9 @@ import OverlayButton from '../Components/OverlayButton';
 import GrowableTextArea from '../Components/Input/GrowableTextarea';
 import ApiClient from '../Helpers/ApiClient';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
-function NewEventView({ IsAuthorized }) {
+function NewEventView() {
     const [locationInput, setLocationInput] = useState(null);
     const [nameInput, setNameInput] = useState("");
     const [descriptionInput, setDescriptionInput] = useState("");
@@ -18,7 +19,7 @@ function NewEventView({ IsAuthorized }) {
     const [isVirtualInput, setIsVirtualInput] = useState(false);
     const [isPublicInput, setIsPublicInput] = useState(false);
     const navigate = useNavigate();
-
+    const { authModel } = useAuth();
     async function submitNewEvent() {
         var calendarEvent = {
             name: nameInput,
@@ -48,7 +49,7 @@ function NewEventView({ IsAuthorized }) {
 
     }
 
-    if (!IsAuthorized)
+    if (!authModel.isAuthorized)
         return (
             <div>
                 <p>Unauthorized, please login to access this page.</p>

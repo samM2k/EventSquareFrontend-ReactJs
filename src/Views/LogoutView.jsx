@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
-function LogoutView({ LogoutFunction }) {
+function LogoutView() {
+    const { authModel } = useAuth();
     const [logoutComplete, setLogoutComplete] = useState(false);
 
     useEffect(() => {
         if (!logoutComplete)
-            LogoutFunction().then(result => {
-                if (!result.Success)
-                    showValidationError(err)
-                setLogoutComplete(true);
+            authModel.logout().then(result => {
+                if (result) {
+                    window.Toast("Error", result)
+                } else {
+                    setLogoutComplete(true);
+                }
             });
-    }, [logoutComplete, LogoutFunction]);
+    }, [logoutComplete]);
 
     if (!logoutComplete) {
         return (
