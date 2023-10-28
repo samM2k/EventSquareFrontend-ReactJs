@@ -11,7 +11,6 @@ import NewEventView from './Views/NewEventView';
 import config from './config.js';
 import EventDetailsView from './Views/EventDetailsView';
 import SignupView from './Views/SignupView';
-import AuthModel from './Models/AuthModel';
 import AuthProvider, { useAuth } from './AuthContext';
 
 function App() {
@@ -25,9 +24,9 @@ function App() {
     }
 
     useEffect(() => {
-        authModel.setLoginStateChangedCallback(setUserIsLoggedIn);
-
         pullMapsApi();
+
+        authModel.setLoginStateChangedCallback(setUserIsLoggedIn);
 
         authModel.validate();
     }, [])
