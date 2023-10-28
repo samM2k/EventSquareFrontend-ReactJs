@@ -27,15 +27,13 @@ function EventsListView({ allEvents }) {
     useEffect(() => {
 
         window.Drawer.setChildren(<>
-            This is where the filters will go!
-
             <div className="filters">
 
                 {/* Name filter */}
                 <label htmlFor="name-filter-input">
                     Name
                 </label>
-                <input id="name-filter-input" value={nameFilter} onChange={(e) => {
+                <input id="name-filter-input" defaultValue={nameFilter} onChange={(e) => {
                     setNameFilter(e.target.value)
                 }} type="text" />
 
@@ -43,13 +41,13 @@ function EventsListView({ allEvents }) {
                 <label htmlFor="desc-filter-input">
                     Description
                 </label>
-                <input id="desc-filter-input" value={descriptionFilter} onChange={(e) => {
+                <input id="desc-filter-input" defaultValue={descriptionFilter} onChange={(e) => {
                     setDescriptionFilter(e.target.value)
                 }} type="text" />
 
                 {/* Public filter */}
                 <div className="checkbox-filter">
-                    <input id="public-filter-checkbox" value={publicFilter} onChange={(e) => {
+                    <input id="public-filter-checkbox" defaultValue={publicFilter} onChange={(e) => {
                         setPublicFilter(e.target.checked)
                     }} type="checkbox" />
                     <label htmlFor="public-filter-checkbox">

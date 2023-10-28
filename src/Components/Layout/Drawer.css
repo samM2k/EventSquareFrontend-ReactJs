@@ -19,6 +19,7 @@
 
 #touch-space {
     flex-grow: 1;
+    cursor: alias;
 }
 
 .display-none {
