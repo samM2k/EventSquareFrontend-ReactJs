@@ -3,6 +3,7 @@ import EventListItemView from "./EventListItemView";
 import ListView from "./ListView";
 import Drawer from "./Layout/Drawer.jsx";
 import './EventsListView.css'
+import EventFiltersView from "./EventFiltersView";
 
 function EventsListView({ allEvents }) {
     const [filteredEvents, setFilteredEvents] = useState(allEvents);
@@ -26,40 +27,7 @@ function EventsListView({ allEvents }) {
 
     useEffect(() => {
 
-        window.Drawer.setChildren(<>
-            This is where the filters will go!
-
-            <div className="filters">
-
-                {/* Name filter */}
-                <label htmlFor="name-filter-input">
-                    Name
-                </label>
-                <input id="name-filter-input" value={nameFilter} onChange={(e) => {
-                    setNameFilter(e.target.value)
-                }} type="text" />
-
-                {/* Descriptoin filter */}
-                <label htmlFor="desc-filter-input">
-                    Description
-                </label>
-                <input id="desc-filter-input" value={descriptionFilter} onChange={(e) => {
-                    setDescriptionFilter(e.target.value)
-                }} type="text" />
-
-                {/* Public filter */}
-                <div className="checkbox-filter">
-                    <input id="public-filter-checkbox" value={publicFilter} onChange={(e) => {
-                        setPublicFilter(e.target.checked)
-                    }} type="checkbox" />
-                    <label htmlFor="public-filter-checkbox">
-                        Public
-                    </label>
-                </div>
-
-                <button onClick={filterTest}>Apply</button>
-            </div>
-        </>);
+        window.Drawer.setChildren(<EventFiltersView applyFiltersCallback={filterTest} nameFilter={nameFilter} setNameFilter={setNameFilter} descriptionFilter={descriptionFilter} setDescriptionFilter={setDescriptionFilter} publicFilter={publicFilter} setPublicFilter={setPublicFilter} />);
     }, [nameFilter, descriptionFilter, publicFilter])
 
     return (
