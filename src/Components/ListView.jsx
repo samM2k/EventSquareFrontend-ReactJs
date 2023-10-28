@@ -16,7 +16,7 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
         setPages(Math.ceil(allChildren.length / 10))
     }, [children])
 
-    function updatePage(n) {
+    const updatePage = (n) => {
         if (n < 0) {
             n = 0
         }
@@ -30,7 +30,7 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
         setChildrenToShow(newChildren);
     }
 
-    function getPaginationButtons() {
+    const getPaginationButtons = () => {
         var childs = [];
         for (let i = 0; i < pages; i++)
             childs.push(
