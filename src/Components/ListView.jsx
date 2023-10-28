@@ -20,7 +20,7 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
         if (n < 0) {
             n = 0
         }
-        if (n <= pages) {
+        if (n >= pages) {
             n = pages - 1;
         }
         var allChildren = React.Children.toArray(children);
