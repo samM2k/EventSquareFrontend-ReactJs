@@ -34,7 +34,7 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
         var childs = [];
         for (let i = 0; i < pages; i++)
             childs.push(
-                <li className={i == page ? "page-item active" : "page-item"}><a className="page-link" href="#" onClick={() => updatePage(i)}>{i + 1}</a></li>
+                <li key={"page-" + i} className={i == page ? "page-item active" : "page-item"}><a className="page-link" href="#" onClick={() => updatePage(i)}>{i + 1}</a></li>
             )
 
         return (<>{childs}</>);
