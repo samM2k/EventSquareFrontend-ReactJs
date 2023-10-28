@@ -50,7 +50,6 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
             }
             {childrenToShow}
             <div className="events-list-pagination">
-                This is where the pagination will be.
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
                         <li className="page-item"><a className="page-link" href="#" onClick={() => updatePage(page - 1)}>Previous</a></li>
