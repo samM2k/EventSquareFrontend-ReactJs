@@ -37,6 +37,7 @@ function EventsListView({ allEvents }) {
                    
                 {/* </Drawer> */}
                 <button onClick={() => window.Drawer.toggle()}>Filters</button>
+                <p>Results: {filteredEvents.length}</p>
             </div>
             <ListView AddEntryRoute="/events/new">
                 {

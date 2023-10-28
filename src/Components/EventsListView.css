@@ -1,0 +1,12 @@
+.events-list-filters {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding: 0 1%;
+}
+
+.events-list-filters>p {
+    height: fit-content;
+    margin: auto 0;
+}
