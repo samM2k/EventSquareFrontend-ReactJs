@@ -2,13 +2,14 @@ import OverlayButton from "./OverlayButton.jsx"
 import { useNavigate } from "react-router-dom";
 import './ListView.css';
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../AuthContext.jsx";
 
-function ListView({ IsAuthorized, children, AddEntryRoute }) {
+function ListView({ children, AddEntryRoute }) {
+    const { authModel } = useAuth();
     const navigate = useNavigate();
     const [childrenToShow, setChildrenToShow] = useState(null)
     const [pages, setPages] = useState(1);
     const [page, setPage] = useState(0);
-
 
     useEffect(() => {
         var allChildren = React.Children.toArray(children);
@@ -45,7 +46,7 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
     return (
         <div className='list-view'>
             {
-                IsAuthorized ?
+                authModel.isAuthorized ?
                     <OverlayButton ioniconName="add" onClick={() => navigate(AddEntryRoute)} />
                     : null
             }
