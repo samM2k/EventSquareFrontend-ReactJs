@@ -14,6 +14,7 @@ function ListView({ IsAuthorized, children, AddEntryRoute }) {
         var allChildren = React.Children.toArray(children);
         setChildrenToShow(allChildren.slice(0, 10))
         setPages(Math.ceil(allChildren.length / 10))
+        setPage(0);
     }, [children])
 
     const updatePage = (n) => {
