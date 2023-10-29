@@ -1,3 +1,5 @@
+import ApiClient from "../Helpers/ApiClient";
+
 class NewEventViewModel {
 
     constructor() {
@@ -26,14 +28,14 @@ class NewEventViewModel {
 
     submit = async () => {
         var calendarEvent = {
-            name: model.nameInput,
-            description: model.descriptionInput,
-            startDateTime: model.startDateInput + "T" + model.startTimeInput + ":00",
-            endDateTime: model.endDateInput + "T" + model.endTimeInput + ":00",
-            isPhysical: model.isPhysicalInput,
-            isVirtual: model.isVirtualInput,
-            visibility: model.isPublicInput ? 2 : 0,
-            location: model.locationInput,
+            name: this.nameInput,
+            description: this.descriptionInput,
+            startDateTime: this.startDateInput + "T" + this.startTimeInput + ":00",
+            endDateTime: this.endDateInput + "T" + this.endTimeInput + ":00",
+            isPhysical: this.isPhysicalInput,
+            isVirtual: this.isVirtualInput,
+            visibility: this.isPublicInput ? 2 : 0,
+            location: this.locationInput,
             rsvps: [],
             owner: ""
         }

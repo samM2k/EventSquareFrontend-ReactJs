@@ -13,8 +13,7 @@ function NewEventView() {
 
     const navigate = useNavigate();
     const { authModel } = useAuth();
-    async function submitNewEvent() {
-        var result = await model.submit();
+    async function onSubmitNewEvent(result) {
         if (result.Success) {
             window.Toast("Event published", "You can now see your event under the \"My events\" section");
             navigate(-1)
@@ -91,7 +90,11 @@ function NewEventView() {
 
             </div>
         </form>
-        <OverlayButton buttonClass="btn-primary" ioniconName="checkmark-outline" onClick={submitNewEvent} />
+        <OverlayButton buttonClass="btn-primary" ioniconName="checkmark-outline" onClick={() => {
+            model.submit().then(result => {
+                onSubmitNewEvent(result);
+            })
+        }} />
     </div>);
 }
 
