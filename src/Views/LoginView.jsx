@@ -5,7 +5,7 @@ import { useAuth } from '../AuthContext';
 
 function LoginView() {
     const navigate = useNavigate();
-    const { authModel } = useAuth();
+    const authModel = useAuth();
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [validationErrorMessage, setValidationErrorMessage] = useState("");

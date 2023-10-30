@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ authModel }}>
+        <AuthContext.Provider value={ authModel }>
             {children}
         </AuthContext.Provider>
     );

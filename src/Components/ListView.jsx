@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../AuthContext.jsx";
 
 function ListView({ children, AddEntryRoute }) {
-    const { authModel } = useAuth();
+    const authModel = useAuth();
     const navigate = useNavigate();
     const [childrenToShow, setChildrenToShow] = useState(null)
     const [pages, setPages] = useState(1);

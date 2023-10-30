@@ -12,7 +12,7 @@ function NewEventView() {
     const [model] = useState(new NewEventViewModel());
 
     const navigate = useNavigate();
-    const { authModel } = useAuth();
+    const authModel = useAuth();
     async function onSubmitNewEvent(result) {
         if (result.Success) {
             window.Toast("Event published", "You can now see your event under the \"My events\" section");

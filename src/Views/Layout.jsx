@@ -8,7 +8,7 @@ import { useAuth } from "../AuthContext.jsx";
 import { useEffect, useState } from "react";
 
 function Layout() {
-    const { authModel } = useAuth();
+    const authModel = useAuth();
 
     var navbarItems = [
         new NavBarItem("Home", "/"),

@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
 function LogoutView() {
-    const { authModel } = useAuth();
+    const authModel = useAuth();
     const [logoutComplete, setLogoutComplete] = useState(false);
 
     useEffect(() => {

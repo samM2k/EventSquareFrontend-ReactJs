@@ -4,7 +4,7 @@ import viteLogo from '../../public/vite.svg'
 import { useAuth } from '../AuthContext';
 
 function Home() {
-    const {authModel} = useAuth();
+    const authModel = useAuth();
     if (!authModel.isAuthorized) {
         return (
             // show a nice landing page here instead of redirect to login.
