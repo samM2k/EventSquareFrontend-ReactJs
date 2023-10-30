@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { DrawerModel } from "./Models/DrawerModel";
 
 const DrawerContext = createContext();
 
@@ -40,22 +41,4 @@ export function DrawerProvider({ children }) {
             {children}
         </DrawerContext.Provider>
     );
-}
-
-class DrawerModel {
-    constructor(visible, content, show, hide, toggle, setContent) {
-        this.visible = visible;
-        this.content = content;
-        this.show = show;
-        this.hide = hide;
-        this.toggle = toggle;
-        this.setContent = setContent;
-    }
-
-    visible;
-    content;
-    show;
-    hide;
-    toggle;
-    setContent;
 }
