@@ -1,34 +1,18 @@
-import { useEffect, useState } from "react";
-import './Drawer.css'
+// Drawer.js
+import React from "react";
+import './Drawer.css';
+import { useDrawer } from "../../DrawerContext";
 
 function Drawer() {
-    const [visible, setVisibility] = useState(false);
-    const [children, setChildren] = useState(<></>);
-    useEffect(() => {
-        window.Drawer =
-        {
-            show: () => {
-                setVisibility(true);
-            },
-            hide: () => {
-                setVisibility(false);
-            },
-            toggle: () => {
-                setVisibility(!visible);
-            },
-            setChildren: (newChildren) => setChildren(newChildren),
-        }
-    }, [])
+    const { drawerContent, visible, hide } = useDrawer();
 
     return (
         <>
             <div id="drawer-container" className={visible ? "" : "display-none"} >
                 <div id="drawer" className={"drawer bg-dark"}>
-                    {children}
+                    {drawerContent}
                 </div>
-                <div onClick={() => {
-                    setVisibility(false);
-                }} id="touch-space"></div>
+                <div onClick={hide} id="touch-space"></div>
             </div>
         </>
     );

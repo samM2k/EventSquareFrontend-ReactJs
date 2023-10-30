@@ -12,6 +12,7 @@ import config from './config.js';
 import EventDetailsView from './Views/EventDetailsView';
 import SignupView from './Views/SignupView';
 import AuthProvider, { useAuth } from './AuthContext';
+import { DrawerProvider } from './DrawerContext';
 
 function App() {
     const authModel = useAuth();
@@ -33,20 +34,22 @@ function App() {
 
     return (
         <AuthProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={< Home />} />
-                        <Route path="login" element={<LoginView />} />
-                        <Route path="signup" element={<SignupView />} />
-                        <Route path="logout" element={<LogoutView />} />
-                        <Route path="events" element={<EventsView />} />
-                        <Route path="events/new" element={<NewEventView />} />
-                        <Route path="events/:id" element={<EventDetailsView />} />
-                        <Route path="*" element={<PageNotFound />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+            <DrawerProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Layout />}>
+                            <Route index element={< Home />} />
+                            <Route path="login" element={<LoginView />} />
+                            <Route path="signup" element={<SignupView />} />
+                            <Route path="logout" element={<LogoutView />} />
+                            <Route path="events" element={<EventsView />} />
+                            <Route path="events/new" element={<NewEventView />} />
+                            <Route path="events/:id" element={<EventDetailsView />} />
+                            <Route path="*" element={<PageNotFound />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </DrawerProvider>
         </AuthProvider>
     );
 }

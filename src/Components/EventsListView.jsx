@@ -4,6 +4,7 @@ import ListView from "./ListView";
 import Drawer from "./Layout/Drawer.jsx";
 import './EventsListView.css'
 import EventFiltersView from "./EventFiltersView";
+import { useDrawer } from "../DrawerContext";
 
 function EventsListView({ allEvents }) {
     const [filteredEvents, setFilteredEvents] = useState(allEvents);
@@ -11,6 +12,7 @@ function EventsListView({ allEvents }) {
     const [nameFilter, setNameFilter] = useState("");
     const [descriptionFilter, setDescriptionFilter] = useState("");
 
+    const { visible, show, hide, toggle, setDrawerContent } = useDrawer();
 
     const filterTest = () => {
         var newEvents;
@@ -22,12 +24,12 @@ function EventsListView({ allEvents }) {
         if (descriptionFilter)
             newEvents = newEvents.filter(ev => ev.description.toLowerCase().includes(descriptionFilter.toLowerCase()));
         setFilteredEvents(newEvents);
-        window.Drawer.hide();
+        hide();
     };
 
     useEffect(() => {
 
-        window.Drawer.setChildren(<EventFiltersView applyFiltersCallback={filterTest} nameFilter={nameFilter} setNameFilter={setNameFilter} descriptionFilter={descriptionFilter} setDescriptionFilter={setDescriptionFilter} publicFilter={publicFilter} setPublicFilter={setPublicFilter} />);
+        setDrawerContent(<EventFiltersView applyFiltersCallback={filterTest} nameFilter={nameFilter} setNameFilter={setNameFilter} descriptionFilter={descriptionFilter} setDescriptionFilter={setDescriptionFilter} publicFilter={publicFilter} setPublicFilter={setPublicFilter} />);
     }, [nameFilter, descriptionFilter, publicFilter])
 
     return (
@@ -36,7 +38,7 @@ function EventsListView({ allEvents }) {
                 {/* <Drawer>
                    
                 {/* </Drawer> */}
-                <button onClick={() => window.Drawer.toggle()}>Filters</button>
+                <button onClick={() => toggle()}>Filters</button>
                 <p>Results: {filteredEvents.length}</p>
             </div>
             <ListView AddEntryRoute="/events/new">
