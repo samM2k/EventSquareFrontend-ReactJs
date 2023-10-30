@@ -7,20 +7,21 @@ import ApiClient from '../Helpers/ApiClient';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import NewEventViewModel from '../Models/NewEventViewModel';
+import { useToast } from '../ToastContext';
 
 function NewEventView() {
     const [model] = useState(new NewEventViewModel());
-
+    const toastModel = useToast();
     const navigate = useNavigate();
     const authModel = useAuth();
     async function onSubmitNewEvent(result) {
         if (result.Success) {
-            window.Toast("Event published", "You can now see your event under the \"My events\" section");
+            toastModel.toast("Event published", "You can now see your event under the \"My events\" section");
             navigate(-1)
         } else {
             //toast validation error
             console.log(result.Body)
-            window.Toast("Failed to publish event", "There was an error processing your request.");
+            toastModel.toast("Failed to publish event", "There was an error processing your request.");
         }
 
     }

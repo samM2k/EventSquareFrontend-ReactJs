@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import { useToast } from '../ToastContext';
 
 function LogoutView() {
     const authModel = useAuth();
     const [logoutComplete, setLogoutComplete] = useState(false);
+    const toastModel = useToast();
 
     useEffect(() => {
         if (!logoutComplete)
             authModel.logout().then(result => {
                 if (result) {
-                    window.Toast("Error", result)
+                    toastModel.toast("Error", result)
                 } else {
                     setLogoutComplete(true);
                 }
