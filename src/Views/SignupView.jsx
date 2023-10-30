@@ -5,7 +5,7 @@ import ApiClient from '../Helpers/ApiClient';
 import { useAuth } from '../AuthContext';
 
 function SignupView() {
-    const authModel = useAuth();
+    const { authModel } = useAuth();
     const navigate = useNavigate();
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
