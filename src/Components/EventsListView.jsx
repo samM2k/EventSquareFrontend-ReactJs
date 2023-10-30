@@ -38,7 +38,7 @@ function EventsListView({ allEvents }) {
                 {/* <Drawer>
                    
                 {/* </Drawer> */}
-                <button onClick={() => drawer.show()}>Filters</button>
+                <button className="btn btn-dark" onClick={() => drawer.show()}>Filters</button>
                 <p>Results: {filteredEvents.length}</p>
             </div>
             <ListView AddEntryRoute="/events/new">

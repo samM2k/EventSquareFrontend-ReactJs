@@ -47,7 +47,7 @@ function ListView({ children, AddEntryRoute }) {
         <div className='list-view'>
             {
                 authModel.isAuthorized ?
-                    <OverlayButton ioniconName="add" onClick={() => navigate(AddEntryRoute)} />
+                    <OverlayButton buttonClass="btn-dark" ioniconName="add" onClick={() => navigate(AddEntryRoute)} />
                     : null
             }
             {childrenToShow}

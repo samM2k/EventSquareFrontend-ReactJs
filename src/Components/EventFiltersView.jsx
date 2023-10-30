@@ -33,7 +33,7 @@ function EventFiltersView({ nameFilter, setNameFilter, descriptionFilter, setDes
                     </label>
                 </div>
             </div>
-            <button onClick={applyFiltersCallback}>Apply</button>
+            <button className='btn btn-dark' onClick={applyFiltersCallback}>Apply</button>
         </div>
     );
 }

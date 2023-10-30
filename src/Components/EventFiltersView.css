@@ -8,9 +8,13 @@
     padding: 10% 0;
 }
 
+.filters-view>button {
+    margin-bottom: 15%;
+}
+
 
 .filter {
-    padding: 5% 0;
+    padding: 10% 0;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -20,9 +24,16 @@
 .checkbox-filter {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.checkbox-filter>* {
-    margin: auto 0
+.checkbox-filter>input {
+    width: 15%;
+}
+
+.checkbox-filter>label {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0.5rem 0;
+    padding-right: 15%;
 }
