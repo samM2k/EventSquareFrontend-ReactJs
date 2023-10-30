@@ -1,4 +1,3 @@
-// DrawerContext.js
 import React, { createContext, useContext, useState } from "react";
 
 const DrawerContext = createContext();
@@ -20,12 +19,43 @@ export function DrawerProvider({ children }) {
     };
 
     const toggle = () => {
-        setVisible(!visible);
+        setVisible((prevVisible) => !prevVisible);
     };
 
+    const setContent = (content) => {
+        setDrawerContent(content);
+    };
+
+    const drawerModel = new DrawerModel(
+        visible,
+        drawerContent,
+        show,
+        hide,
+        toggle,
+        setContent,
+    )
+
     return (
-        <DrawerContext.Provider value={{ visible, show, hide, toggle, drawerContent, setDrawerContent }}>
+        <DrawerContext.Provider value={drawerModel}>
             {children}
         </DrawerContext.Provider>
     );
+}
+
+class DrawerModel {
+    constructor(visible, content, show, hide, toggle, setContent) {
+        this.visible = visible;
+        this.content = content;
+        this.show = show;
+        this.hide = hide;
+        this.toggle = toggle;
+        this.setContent = setContent;
+    }
+
+    visible;
+    content;
+    show;
+    hide;
+    toggle;
+    setContent;
 }

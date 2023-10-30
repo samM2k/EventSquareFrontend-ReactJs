@@ -12,7 +12,7 @@ function EventsListView({ allEvents }) {
     const [nameFilter, setNameFilter] = useState("");
     const [descriptionFilter, setDescriptionFilter] = useState("");
 
-    const { visible, show, hide, toggle, setDrawerContent } = useDrawer();
+    const drawer = useDrawer();
 
     const filterTest = () => {
         var newEvents;
@@ -24,12 +24,12 @@ function EventsListView({ allEvents }) {
         if (descriptionFilter)
             newEvents = newEvents.filter(ev => ev.description.toLowerCase().includes(descriptionFilter.toLowerCase()));
         setFilteredEvents(newEvents);
-        hide();
+        drawer.hide();
     };
 
     useEffect(() => {
 
-        setDrawerContent(<EventFiltersView applyFiltersCallback={filterTest} nameFilter={nameFilter} setNameFilter={setNameFilter} descriptionFilter={descriptionFilter} setDescriptionFilter={setDescriptionFilter} publicFilter={publicFilter} setPublicFilter={setPublicFilter} />);
+        drawer.setContent(<EventFiltersView applyFiltersCallback={filterTest} nameFilter={nameFilter} setNameFilter={setNameFilter} descriptionFilter={descriptionFilter} setDescriptionFilter={setDescriptionFilter} publicFilter={publicFilter} setPublicFilter={setPublicFilter} />);
     }, [nameFilter, descriptionFilter, publicFilter])
 
     return (
@@ -38,7 +38,7 @@ function EventsListView({ allEvents }) {
                 {/* <Drawer>
                    
                 {/* </Drawer> */}
-                <button onClick={() => toggle()}>Filters</button>
+                <button onClick={() => drawer.show()}>Filters</button>
                 <p>Results: {filteredEvents.length}</p>
             </div>
             <ListView AddEntryRoute="/events/new">

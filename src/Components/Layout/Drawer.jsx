@@ -4,15 +4,15 @@ import './Drawer.css';
 import { useDrawer } from "../../DrawerContext";
 
 function Drawer() {
-    const { drawerContent, visible, hide } = useDrawer();
+    const drawer = useDrawer();
 
     return (
         <>
-            <div id="drawer-container" className={visible ? "" : "display-none"} >
+            <div id="drawer-container" className={drawer.visible ? "" : "display-none"} >
                 <div id="drawer" className={"drawer bg-dark"}>
-                    {drawerContent}
+                    {drawer.content}
                 </div>
-                <div onClick={hide} id="touch-space"></div>
+                <div onClick={drawer.hide} id="touch-space"></div>
             </div>
         </>
     );
