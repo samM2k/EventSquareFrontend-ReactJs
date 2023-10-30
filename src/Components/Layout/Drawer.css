@@ -1,7 +1,10 @@
 .drawer {
+    backdrop-filter: blur(10px);
     width: 40vw;
-    opacity: 90%;
-    box-shadow: 0 2px 7px 1px rgba(0, 0, 0, .3);
+    background-color: rgba(45,
+            45,
+            45, 0.85);
+    box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
     color: white;
 }
 
@@ -33,7 +36,7 @@
         top: 0;
         width: 100vw;
         height: 100vh;
-        opacity: 90%;
         color: white;
+        background-color: rgba(45, 45, 45, 0.85);
     }
 }

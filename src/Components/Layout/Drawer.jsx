@@ -9,7 +9,7 @@ function Drawer() {
     return (
         <>
             <div id="drawer-container" className={drawer.visible ? "" : "display-none"} >
-                <div id="drawer" className={"drawer bg-dark"}>
+                <div id="drawer" className={"drawer"}>
                     {drawer.content}
                 </div>
                 <div onClick={drawer.hide} id="touch-space"></div>
