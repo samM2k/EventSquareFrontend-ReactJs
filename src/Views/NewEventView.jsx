@@ -6,18 +6,49 @@ import GrowableTextArea from '../Components/Input/GrowableTextarea';
 import ApiClient from '../Helpers/ApiClient';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import NewEventViewModel from '../Models/NewEventViewModel';
+// import NewEventViewModel from '../Models/NewEventViewModel';
 import { useToast } from '../ToastContext';
 
 function NewEventView() {
-    const [model] = useState(new NewEventViewModel());
+    // const [model] = useState(new NewEventViewModel());
+    const [locationInput, setLocationInput] = useState(null);
+    const [nameInput, setNameInput] = useState("");
+    const [descriptionInput, setDescriptionFilter] = useState("");
+    const [startDateInput, setStartDateInput] = useState("");
+    const [startTimeInput, setStartTimeInput] = useState("");
+    const [endDateInput, setEndDateInput] = useState("");
+    const [endTimeInput, setEndTimeInput] = useState("");
+    const [isPhysicalInput, setIsPhysicalInput] = useState(false);
+    const [isVirtualInput, setIsVirtualInput] = useState(false);
+    const [visibilityInput, setVisibilityInput] = useState(0);
     const toastModel = useToast();
     const navigate = useNavigate();
     const authModel = useAuth();
+
+    const submit = async () => {
+        var calendarEvent = {
+            name: nameInput,
+            description: descriptionInput,
+            startDateTime: startDateInput + "T" + startTimeInput + ":00",
+            endDateTime: endDateInput + "T" + endTimeInput + ":00",
+            isPhysical: isPhysicalInput,
+            isVirtual: isVirtualInput,
+            visibility: visibilityInput,
+            location: locationInput,
+            rsvps: [],
+            owner: ""
+        }
+
+        console.log(calendarEvent)
+
+        var result = await ApiClient.postEvent(calendarEvent);
+        return result;
+    }
+
     async function onSubmitNewEvent(result) {
         if (result.Success) {
-            toastModel.toast("Event published", "You can now see your event under the \"My events\" section");
-            navigate(-1)
+            toastModel.toast("Event published", "You can now see your event published!");
+            navigate(result.Body?.id ? `/events/${result.Body.id}` : navigate(-1))
         } else {
             //toast validation error
             console.log(result.Body)
@@ -38,61 +69,69 @@ function NewEventView() {
             <div className='display-flex-column form-column'>
                 <div className='field'>
                     <label>Name</label>
-                    <input type="text" placeholder="Name" defaultValue={model.nameInput} onChange={(e) => model.nameInput = e.target.value} />
+                    <input type="text" placeholder="Name" defaultValue={nameInput} onChange={(e) => nameInput = e.target.value} />
                 </div>
 
                 <div className='field'>
                     <label>Description</label>
-                    <GrowableTextArea placeholder="Description" defaultValue={model.descriptionInput} onChange={(e) => model.descriptionInput = (e.target.value)} />
+                    <GrowableTextArea placeholder="Description" defaultValue={descriptionInput} onChange={(e) => descriptionInput = (e.target.value)} />
                 </div>
 
-                <div className='field'>
-                    <label>Location</label>
-                    <LocationPicker InitialValue={model.locationInput} LocationChangedCallback={(location) => model.locationInput = location} />
-                </div>
+                {(isPhysicalInput) ?
+                    <div className='field'>
+                        <label>Location</label>
+                        <LocationPicker InitialValue={locationInput} LocationChangedCallback={(location) => locationInput = location} />
+                    </div>
+                    : null}
+
             </div>
             <div className='display-flex-column form-column'>
                 <div className='field'>
                     <label>Start Date</label>
-                    <input type="date" placeholder="Start date" defaultValue={model.startDateInput} onChange={(e) => model.startDateInput = (e.target.value)} />
+                    <input type="date" placeholder="Start date" defaultValue={startDateInput} onChange={(e) => setStartDateInput(e.target.value)} />
                 </div>
 
                 <div className='field'>
                     <label>Start Time</label>
-                    <input type="time" placeholder="Start Time" defaultValue={model.startTimeInput} onChange={(e) => model.startTimeInput = (e.target.value)} />
+                    <input type="time" placeholder="Start Time" defaultValue={startTimeInput} onChange={(e) => setStartTimeInput(e.target.value)} />
                 </div>
 
                 <div className='field'>
                     <label>End Date</label>
-                    <input type="date" placeholder="End date" defaultValue={model.endDateInput} onChange={(e) => model.endDateInput = (e.target.value)} />
+                    <input type="date" placeholder="End date" defaultValue={endDateInput} onChange={(e) => setEndDateInput(e.target.value)} />
                 </div>
 
                 <div className='field'>
                     <label>End Time</label>
-                    <input type="time" placeholder="End time" defaultValue={model.endTimeInput} onChange={(e) => model.endTimeInput = (e.target.value)} />
+                    <input type="time" placeholder="End time" defaultValue={endTimeInput} onChange={(e) => setEndTimeInput(e.target.value)} />
                 </div>
 
             </div>
             <div className='display-flex-column form-column centered-vertically'>
                 <div className='display-flex-row field'>
-                    <input type="checkbox" defaultChecked={model.isPhysicalInput} onChange={(e) => model.isPhysicalInput = (e.target.checked)} />
+                    <input type="checkbox" defaultChecked={isPhysicalInput} onChange={(e) => setIsPhysicalInput(e.target.checked)} />
                     <label>Physical</label>
                 </div>
 
                 <div className='display-flex-row field'>
-                    <input type="checkbox" defaultChecked={model.isVirtualInput} onChange={(e) => model.isVirtualInput = (e.target.checked)} />
+                    <input type="checkbox" defaultChecked={isVirtualInput} onChange={(e) => setIsVirtualInput(e.target.checked)} />
                     <label>Virtual</label>
                 </div>
 
-                <div className='display-flex-row field'>
-                    <input type="checkbox" defaultChecked={model.isPublicInput} onChange={(e) => model.isPublicInput = (e.target.checked)} />
-                    <label>Public</label>
+                <div className='field'>
+                    <label>Visibility</label>
+                    <select defaultValue={visibilityInput} onChange={(e) => setVisibilityInput(e.target.value)}>
+                        <option value="0">Hidden</option>
+                        <option value="1">Invite-Only</option>
+                        <option value="2">Public</option>
+                    </select>
+
                 </div>
 
             </div>
         </form>
         <OverlayButton buttonClass="btn-primary" ioniconName="checkmark-outline" onClick={() => {
-            model.submit().then(result => {
+            submit().then(result => {
                 onSubmitNewEvent(result);
             })
         }} />

@@ -172,7 +172,7 @@ class ApiClient {
             var response = await $.ajax(settings);
             return new ApiResult(true, response);
         } catch (e) {
-            return new ApiResult(false, e.responseText);
+            return new ApiResult(false, e.responseJSON?.title ?? getExceptionFromStatusCode(e.status));
         }
     }
 }

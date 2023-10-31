@@ -43,7 +43,8 @@
 
 .field>label,
 .field>input,
-.field>textarea {
+.field>textarea,
+.field>select {
     width: -webkit-fill-available;
 }
 
