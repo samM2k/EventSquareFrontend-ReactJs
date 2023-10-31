@@ -9,7 +9,6 @@ function LoginView() {
     const authModel = useAuth();
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
-    const [validationErrorMessage, setValidationErrorMessage] = useState("");
     const toastModel = useToast();
 
     if (!authModel.isAuthenticated)
