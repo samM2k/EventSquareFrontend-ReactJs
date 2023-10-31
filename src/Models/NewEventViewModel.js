@@ -10,7 +10,7 @@ class NewEventViewModel {
         this.startTimeInput = "";
         this.endDateInput = "";
         this.endTimeInput = "";
-        this.isPhysicalInput = false;
+        this.visibilityInput = 0;
         this.isVirtualInput = false;
         this.isPublicInput = false;
     }

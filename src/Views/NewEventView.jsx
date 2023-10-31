@@ -13,7 +13,7 @@ function NewEventView() {
     // const [model] = useState(new NewEventViewModel());
     const [locationInput, setLocationInput] = useState(null);
     const [nameInput, setNameInput] = useState("");
-    const [descriptionInput, setDescriptionFilter] = useState("");
+    const [descriptionInput, setDescriptionInput] = useState("");
     const [startDateInput, setStartDateInput] = useState("");
     const [startTimeInput, setStartTimeInput] = useState("");
     const [endDateInput, setEndDateInput] = useState("");
@@ -64,78 +64,80 @@ function NewEventView() {
             </div>
         );
 
-    return (<div className="new-event-container">
-        <form className='display-flex-responsive'>
-            <div className='display-flex-column form-column'>
-                <div className='field'>
-                    <label>Name</label>
-                    <input type="text" placeholder="Name" defaultValue={nameInput} onChange={(e) => nameInput = e.target.value} />
-                </div>
+    return (
 
-                <div className='field'>
-                    <label>Description</label>
-                    <GrowableTextArea placeholder="Description" defaultValue={descriptionInput} onChange={(e) => descriptionInput = (e.target.value)} />
-                </div>
-
-                {(isPhysicalInput) ?
+        <div className="new-event-container">
+            <form className='display-flex-responsive'>
+                <div className='display-flex-column form-column'>
                     <div className='field'>
-                        <label>Location</label>
-                        <LocationPicker InitialValue={locationInput} LocationChangedCallback={(location) => locationInput = location} />
+                        <label>Name</label>
+                        <input type="text" placeholder="Name" defaultValue={nameInput} onChange={(e) => setNameInput(e.target.value)} />
                     </div>
-                    : null}
 
-            </div>
-            <div className='display-flex-column form-column'>
-                <div className='field'>
-                    <label>Start Date</label>
-                    <input type="date" placeholder="Start date" defaultValue={startDateInput} onChange={(e) => setStartDateInput(e.target.value)} />
-                </div>
+                    <div className='field'>
+                        <label>Description</label>
+                        <GrowableTextArea placeholder="Description" defaultValue={descriptionInput} onChange={(e) => setDescriptionInput(e.target.value)} />
+                    </div>
 
-                <div className='field'>
-                    <label>Start Time</label>
-                    <input type="time" placeholder="Start Time" defaultValue={startTimeInput} onChange={(e) => setStartTimeInput(e.target.value)} />
-                </div>
-
-                <div className='field'>
-                    <label>End Date</label>
-                    <input type="date" placeholder="End date" defaultValue={endDateInput} onChange={(e) => setEndDateInput(e.target.value)} />
-                </div>
-
-                <div className='field'>
-                    <label>End Time</label>
-                    <input type="time" placeholder="End time" defaultValue={endTimeInput} onChange={(e) => setEndTimeInput(e.target.value)} />
-                </div>
-
-            </div>
-            <div className='display-flex-column form-column centered-vertically'>
-                <div className='display-flex-row field'>
-                    <input type="checkbox" defaultChecked={isPhysicalInput} onChange={(e) => setIsPhysicalInput(e.target.checked)} />
-                    <label>Physical</label>
-                </div>
-
-                <div className='display-flex-row field'>
-                    <input type="checkbox" defaultChecked={isVirtualInput} onChange={(e) => setIsVirtualInput(e.target.checked)} />
-                    <label>Virtual</label>
-                </div>
-
-                <div className='field'>
-                    <label>Visibility</label>
-                    <select defaultValue={visibilityInput} onChange={(e) => setVisibilityInput(e.target.value)}>
-                        <option value="0">Hidden</option>
-                        <option value="1">Invite-Only</option>
-                        <option value="2">Public</option>
-                    </select>
+                    {(isPhysicalInput) ?
+                        <div className='field'>
+                            <label>Location</label>
+                            <LocationPicker InitialValue={locationInput} LocationChangedCallback={(location) => setLocationInput(location)} />
+                        </div>
+                        : null}
 
                 </div>
+                <div className='display-flex-column form-column'>
+                    <div className='field'>
+                        <label>Start Date</label>
+                        <input type="date" placeholder="Start date" defaultValue={startDateInput} onChange={(e) => setStartDateInput(e.target.value)} />
+                    </div>
 
-            </div>
-        </form>
-        <OverlayButton buttonClass="btn-primary" ioniconName="checkmark-outline" onClick={() => {
-            submit().then(result => {
-                onSubmitNewEvent(result);
-            })
-        }} />
-    </div>);
+                    <div className='field'>
+                        <label>Start Time</label>
+                        <input type="time" placeholder="Start Time" defaultValue={startTimeInput} onChange={(e) => setStartTimeInput(e.target.value)} />
+                    </div>
+
+                    <div className='field'>
+                        <label>End Date</label>
+                        <input type="date" placeholder="End date" defaultValue={endDateInput} onChange={(e) => setEndDateInput(e.target.value)} />
+                    </div>
+
+                    <div className='field'>
+                        <label>End Time</label>
+                        <input type="time" placeholder="End time" defaultValue={endTimeInput} onChange={(e) => setEndTimeInput(e.target.value)} />
+                    </div>
+
+                </div>
+                <div className='display-flex-column form-column centered-vertically'>
+                    <div className='display-flex-row field'>
+                        <input type="checkbox" defaultChecked={isPhysicalInput} onChange={(e) => setIsPhysicalInput(e.target.checked)} />
+                        <label>Physical</label>
+                    </div>
+
+                    <div className='display-flex-row field'>
+                        <input type="checkbox" defaultChecked={isVirtualInput} onChange={(e) => setIsVirtualInput(e.target.checked)} />
+                        <label>Virtual</label>
+                    </div>
+
+                    <div className='field'>
+                        <label>Visibility</label>
+                        <select defaultValue={visibilityInput} onChange={(e) => setVisibilityInput(e.target.value)}>
+                            <option value="0">Hidden</option>
+                            <option value="1">Invite-Only</option>
+                            <option value="2">Public</option>
+                        </select>
+
+                    </div>
+
+                </div>
+            </form>
+            <OverlayButton buttonClass="btn-primary" ioniconName="checkmark-outline" onClick={() => {
+                submit().then(result => {
+                    onSubmitNewEvent(result);
+                })
+            }} />
+        </div>);
 }
 
 export default NewEventView;
