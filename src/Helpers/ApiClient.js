@@ -5,6 +5,16 @@ class ApiClient {
 
     // Returns ApiResult
     static login = async (email, password) => {
+        const getExceptionFromStatusCode = (statusCode) => {
+            switch (statusCode) {
+                case 0:
+                    return "Could not connect to the server";
+                default:
+                    return `Unrecognised error code (${statusCode})`;
+            }
+        }
+
+
         var settings = {
             "url": ApiClient.domain + "/api/account/login",
             "method": "POST",
@@ -26,7 +36,7 @@ class ApiClient {
             var response = await $.ajax(settings);
             return new ApiResult(true, response);
         } catch (e) {
-            return new ApiResult(false, e.responseText);
+            return new ApiResult(false, e.responseText ?? getExceptionFromStatusCode(e.status));
         }
     }
 
